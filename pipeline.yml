@@ -1,0 +1,27 @@
+---
+jobs:
+- name: publish
+  plan:
+  - get: pcf-cloud-native
+    trigger: true
+  - put: cloud-foundry
+    params:
+      manifest: pcf-cloud-native/manifest.yml
+      path: pcf-cloud-native
+      current_app_name: absg-workshop
+
+resources:
+- name: pcf-cloud-native
+  type: git
+  source:
+    uri: https://github.com/patrickcrocker/pcf-cloud-native.git
+    branch: master
+
+- name: cloud-foundry
+  type: cf
+  source:
+    api: api.system.anvil.pcfdemo.com
+    username: {{username}}
+    password: {{password}}
+    organization: ABSG
+    space: workshop
