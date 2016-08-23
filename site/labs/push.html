@@ -353,7 +353,7 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
 
 <p>You can add data by issuing a curl request to POST to the people endpoint.  Be sure to replace your information and URL below:</p>
 
-<pre><code class="language-sh">curl -X POST -H &quot;Content-Type:application/json&quot; -d '{&quot;firstName&quot;:&quot;Steve&quot;, &quot;lastName&quot;:&quot;Greenberg&quot;, &quot;company&quot;:&quot;Pivotal&quot;}' http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
+<pre><code class="language-sh">curl -X POST -H &quot;Content-Type:application/json&quot; -d &quot;{\&quot;firstName\&quot;:\&quot;Steve\&quot;, \&quot;lastName\&quot;:\&quot;Greenberg\&quot;, \&quot;company\&quot;:\&quot;Pivotal\&quot;}&quot; http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 </code></pre>
 
 <p>Now, you should see the data:</p>
