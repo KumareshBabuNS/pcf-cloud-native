@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.15" />
+<title>Microservices and 12 factor apps</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="fonts/source-sans-pro/source-sans-pro.css" rel='stylesheet' type='text/css'>
+<link href="fonts/Roboto/Roboto.css" rel='stylesheet' type='text/css'>
+<link href="css/pivotal-ui.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/pivotal.css">
+<link rel="pivotal icon" type="image/png" href="img/P_Marks_Knockout_Teal.png">
+
+<script src="js/jquery-1.12.1.min.js"></script>
+<script src="js/js.cookie.js"></script>
+<script src="js/pivotal-reveal.js"></script>
+<script src="lib/js/head.min.js"></script>
+<script src="js/settings/presentation-settings.js"></script>
+
+    </head>
+    <body>
+      <div class="reveal">
+        <div class="slides">
+          
+  <section class="title-slide" data-background="#243640">
+
+
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 h2">Going Cloud Native</span><br />
+      <h1 class="type-neutral-8">Microservices and 12 factor apps</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-name"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-title type-brand-5"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-contact"></span>
+    </div>
+  </div>
+
+
+  <aside class="notes">
+    In this section, we cover the basics of microservices and 12 factor apps.
+  </aside>
+
+</section>
+
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Microservices"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Microservices defined as...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    <div class="row">
+      <h1 class="type-neutral-6">"A loosely-coupled, service-oriented architecture with bounded context."</h1>
+    </div>
+    <div class="row">
+      <h2 class="type-brand-5">Adrian Cockcroft</h2>
+    </div>
+    
+    
+      <div class="row">
+        <h4 class="type-neutral-4">Source: http://thenewstack.io/dockercon-europe-adrian-cockcroft-on-the-state-of-microservices/</h4>
+    
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  The good parts of SOA.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Bounded Contexts"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4"></h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    <div class="row">
+      <h1 class="type-neutral-6">"It allows updates without needing to understand how everything else works."</h1>
+    </div>
+    <div class="row">
+      <h2 class="type-brand-5">Adrian Cockcroft</h2>
+    </div>
+    
+    
+      <div class="row">
+        <h4 class="type-neutral-4">Source: http://thenewstack.io/dockercon-europe-adrian-cockcroft-on-the-state-of-microservices/</h4>
+    
+    
+      
+        <div class="row fragment">
+          <h2 class="type-neutral-6">
+            <span class="quote-note">
+              <i class="fa fa-arrow-right type-neutral-4"></i>
+              single responsibility
+            </span>
+          </h2>
+        </div>
+      
+        <div class="row fragment">
+          <h2 class="type-neutral-6">
+            <span class="quote-note">
+              <i class="fa fa-arrow-right type-neutral-4"></i>
+              separation of concerns
+            </span>
+          </h2>
+        </div>
+      
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Impact"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Impact of Microservices</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row">
+  <div class="col-md-24 txt-c">
+    
+      <br /></p>
+
+<p>Decoupled change cycles -&gt; <strong>frequent deploys</strong></p>
+
+<p>Small codebase -&gt; <strong>fast onboarding</strong></p>
+
+<p>Efficient scale -&gt; <strong>technology &amp; organizations</strong>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  Think back to what we are trying to achieve.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#243641"
+  
+   data-menu-title="Data Microservices"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4"></h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row">
+  <div class="col-md-24 txt-l">
+    
+      Data Microservices</p>
+
+<p><img src="img/microservices.png" alt="Data Microservices" />
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  Pick the right technology (language, persistence).  Use cloud friendly protocols.  Leverage asynch processing
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Overhead"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Microservices architectures have significant...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row top-bottom">
+  <div class="txt-c">
+    <div class="row type-neutral-5 top fragment shrink" data-fragment-index="2">
+      <span class="fragment" data-fragment-index="1">Ops Overhead</span>
+    </div>
+    <div class="row type-neutral-10 bottom fragment grow" data-fragment-index="2">
+      <span class="fragment" data-fragment-index="2">Mitigated by CF</span>
+    </div>
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  No free lunch.  Microservice architectures require significant overhead.  However, CF is designed to alleviate these challenges.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="12 Factor"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4"></h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    
+    
+      <div class="row ">
+        <h1 class="type-neutral-6">So what is 12 factor?</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6"><strong>Coping mechanism</strong> for <strong>complexity</strong> in <strong>distributed systems</strong>.</h1>
+      </div>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  12 factor is a set of best practices to help cope with complexity and maximize the effectiveness of your organization and applications in the cloud.
+</aside>
+
+
+</section>
+
+          
+
+          <section class="last-slide aligner" data-background="#0A0203" data-transition="zoom" data-menu-title="Cloud Foundry">
+  <div class="row">
+    <div class="col-sm-24 txt-c" style="margin-top: 80px;">
+      <img src="img/cf-foundation-white.png"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-24 txt-c" style="margin-top: 30px;">
+      <h1 class="type-neutral-5">Speed &nbsp;&nbsp; | &nbsp;&nbsp; Simplicity &nbsp;&nbsp; | &nbsp;&nbsp; Control<h1>
+    </div>
+  </div>
+</section>
+
+        </div>
+        <div class="copyright">
+          
+            (C) Copyright 2016 Pivotal Software, Inc. All Rights Reserved.
+          
+        </div>
+  			<div class="logo">
+          
+  				  <img src="img/cf.png" alt="logo" title="logo" />
+          
+  			</div>
+      </div>
+
+
+      <!-- jQuery -->
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/pivotal-ui.min.js"></script>
+<script src="js/reveal.js"></script>
+
+      <div class="settings-icon">
+  <i class="type-accent-3 fa fa-cog" data-toggle="modal" data-target="#settingsModal"></i>
+</div>
+<div class="modal fade modal-basic" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Presentation Settings</h4>
+      </div>
+      <div class="modal-body">
+        <div class="presenter">
+          <p>Set presenter information below.  These values will show on the title slide.</p>
+          <form role="form">
+            <div class="form-group">
+              <label for="presenterName">Presenter Name</label>
+              <input type="text" class="form-control" id="presenterName" placeholder="Presenter Name">
+            </div>
+            <div class="form-group">
+              <label for="presenterTitle">Presenter Title</label>
+              <input type="text" class="form-control" id="presenterTitle" placeholder="Presenter Title">
+            </div>
+            <div class="form-group">
+              <label for="presenterContact">Presenter Contact</label>
+              <input type="text" class="form-control" id="presenterContact" placeholder="Presenter Contact">
+            </div>
+          </form>
+        </div>
+        <hr class="divider-alternate-2"/>
+        <div class="settings">
+          <p>Toggle settings for your presentation by clicking below.</p>
+          <ul class="list-group">
+            <li class="list-group-item"><a onclick="PresentationSettings.toggleShowNotes()"><i id="showNotes"></i>On Screen Notes</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lowlight" onclick="PresentationSettings.updateFromForm()" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+      <script>
+
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          slideNumber: true,
+          history: true,
+          keyboard: true,
+          overview: true,
+          center: false,
+          touch: true,
+          loop: false,
+          rtl: false,
+          fragments: true,
+          embedded: false,
+          help: true,
+          showNotes: false,
+          previewLinks: true,
+          transition: 'concave', 
+          backgroundTransition: 'fade',
+          margin: 0,
+          minScale: 0.2,
+          maxScale: 2.0,
+
+           
+
+          dependencies: [
+              
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+            
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+            
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+            
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+
+            
+            { src: 'plugin/notes/notes.js', async: true },
+
+            
+            { src: 'plugin/math/math.js', async: true },
+
+            { src: 'plugin/menu/menu.js', async: true }
+					],
+
+          menu: {
+            
+            
+            side: 'left',
+
+            
+            
+            numbers: false,
+
+            
+            
+            hideMissingTitles: false,
+
+            
+            
+            markers: true,
+
+            
+            
+            
+
+
+            
+            
+            themes: false,
+
+            
+            transitions: false,
+
+            
+            
+            openButton: true,
+
+            
+            
+            
+            openSlideNumber: false,
+
+            
+            
+            
+            keyboard: true
+          }
+
+
+        });
+
+        Reveal.addEventListener( 'ready', function( event ) {
+          PresentationSettings.updateFromCookie();
+        });
+
+      </script>
+    </body>
+</html>

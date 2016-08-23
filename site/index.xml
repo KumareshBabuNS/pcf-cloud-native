@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloud Native with Microservices</title>
+    <link>/public/cf-oss-training/cloud-native/site/</link>
+    <description>Recent content on Cloud Native with Microservices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Apr 2016 19:21:15 -0600</lastBuildDate>
+    <atom:link href="/public/cf-oss-training/cloud-native/site/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Agenda</title>
+      <link>/public/cf-oss-training/cloud-native/site/agenda/</link>
+      <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/agenda/</guid>
+      <description>
+
+&lt;h2 id=&#34;1-from-monoliths-to-microservices&#34;&gt;1. From monoliths to microservices&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/slides/intro/index.html&#34; target=&#34;_blank&#34;&gt;
+  &lt;i class=&#34;fa fa-tv&#34;&gt;&lt;/i&gt; Slides&lt;/a&gt; &amp;nbsp; | &amp;nbsp; &lt;a href=&#34;../labs/setup&#34;&gt;&lt;i class=&#34;fa fa-flask&#34;&gt;&lt;/i&gt; Lab&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;2-microservices-12-factor-apps&#34;&gt;2. Microservices &amp;amp; 12 Factor Apps&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/slides/12factor/index.html&#34; target=&#34;_blank&#34;&gt;
+  &lt;i class=&#34;fa fa-tv&#34;&gt;&lt;/i&gt; Slides&lt;/a&gt; &amp;nbsp; | &amp;nbsp; &lt;a href=&#34;../labs/push&#34;&gt;&lt;i class=&#34;fa fa-flask&#34;&gt;&lt;/i&gt; Lab&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;3-12-factor-review&#34;&gt;3. 12 Factor Review&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/slides/12factor-review/index.html&#34; target=&#34;_blank&#34;&gt;
+  &lt;i class=&#34;fa fa-tv&#34;&gt;&lt;/i&gt; Slides&lt;/a&gt; &amp;nbsp; | &amp;nbsp; &lt;a href=&#34;../labs/bind&#34;&gt;&lt;i class=&#34;fa fa-flask&#34;&gt;&lt;/i&gt; Lab&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;4-service-discovery&#34;&gt;4. Service Discovery&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/slides/service-discovery/index.html&#34; target=&#34;_blank&#34;&gt;
+  &lt;i class=&#34;fa fa-tv&#34;&gt;&lt;/i&gt; Slides&lt;/a&gt; &amp;nbsp; | &amp;nbsp; &lt;a href=&#34;../labs/eureka&#34;&gt;&lt;i class=&#34;fa fa-flask&#34;&gt;&lt;/i&gt; Lab&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;5-circuit-breaking&#34;&gt;5. Circuit Breaking&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/slides/circuit-breaking/index.html&#34; target=&#34;_blank&#34;&gt;
+  &lt;i class=&#34;fa fa-tv&#34;&gt;&lt;/i&gt; Slides&lt;/a&gt; &amp;nbsp; | &amp;nbsp; &lt;a href=&#34;../labs/hystrix&#34;&gt;&lt;i class=&#34;fa fa-flask&#34;&gt;&lt;/i&gt; Lab&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;6-distributed-tracing&#34;&gt;6. Distributed Tracing&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/slides/distributed-tracing/index.html&#34; target=&#34;_blank&#34;&gt;
+  &lt;i class=&#34;fa fa-tv&#34;&gt;&lt;/i&gt; Slides&lt;/a&gt; &amp;nbsp; | &amp;nbsp; &lt;a href=&#34;../labs/logs&#34;&gt;&lt;i class=&#34;fa fa-flask&#34;&gt;&lt;/i&gt; Lab&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;7-recap-retro&#34;&gt;7. Recap &amp;amp; Retro&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Logs</title>
+      <link>/public/cf-oss-training/cloud-native/site/labs/logs/</link>
+      <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/labs/logs/</guid>
+      <description>
+
+&lt;p&gt;In this exercise, you will view logs for your application and instrumentation for distributed tracing.&lt;/p&gt;
+
+&lt;h2 id=&#34;cli-logs&#34;&gt;CLI Logs&lt;/h2&gt;
+
+&lt;p&gt;Cloud Foundry aggregates logs related to your application.  These include logs for components related to calls to your application.&lt;/p&gt;
+
+&lt;p&gt;The browser app has been instrumented using &lt;a href=&#34;http://cloud.spring.io/spring-cloud-sleuth/&#34; target=&#34;_blank&#34;&gt;Spring Cloud Sleuth&lt;/a&gt;.  This add span information to your logs and can be easily hooked up to external systems for consumption.  We won&amp;rsquo;t have time to deploy and configure an external service like Zipkin, but you can still view this instrumentation in the logs.&lt;/p&gt;
+
+&lt;h3 id=&#34;tailing-logs&#34;&gt;Tailing Logs&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;cf logs&lt;/code&gt; to tail logs for your browser application.&lt;/li&gt;
+&lt;li&gt;Issue a few requests through the web interface.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You should see logs from the application but also the Router component of CF.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;2016-05-20T12:50:59.07-0600 [RTR/5] &amp;lt;-- RTR is the Router.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also note:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;2016-05-20T12:52:11.07-0600 [APP/0]      OUT 2016-05-20 18:52:11.068  INFO [browser,92ca8a46b9903cdc,92ca8a46b9903cdc,true]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The section &lt;code&gt;[browser,92ca8a46b9903cdc,92ca8a46b9903cdc,true]&lt;/code&gt; is instrumented by Spring Cloud Sleuth.  You are seeing [app-name, spanID, traceID].&lt;/p&gt;
+
+&lt;p&gt;This info is also available in the browser UI.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Notice that cloud foundry automatically treats your application logs as streams and makes them easily accessible: &lt;a href=&#34;http://12factor.net/logs&#34;&gt;http://12factor.net/logs&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;beyond-the-class&#34;&gt;Beyond the Class&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stream Application Logs to a 3rd party tool: &lt;a href=&#34;https://docs.cloudfoundry.org/devguide/services/log-management-thirdparty-svc.html&#34; target=&#34;_blank&#34;&gt;docs.cloudfoundry.org/devguide/services/log-management-thirdparty-svc.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use PCF Metrics to view detailed information about your app: &lt;a href=&#34;http://docs.run.pivotal.io/metrics/using.html&#34; target=&#34;_blank&#34;&gt;docs.run.pivotal.io/metrics/using.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Deploy the Microservices Dashboard: &lt;a href=&#34;https://github.com/ordina-jworks/microservices-dashboard&#34; target=&#34;_blank&#34;&gt;github.com/ordina-jworks/microservices-dashboard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;a href=&#34;http://start.spring.io&#34; target=&#34;_blank&#34;&gt;start.spring.io&lt;/a&gt; to generate a zipkin server.  Deploy it to CF and hook it up to your microservices.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Notes</title>
+      <link>/public/cf-oss-training/cloud-native/site/notes/</link>
+      <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/notes/</guid>
+      <description>
+
+&lt;h2 id=&#34;material-philosophy&#34;&gt;Material Philosophy&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Presentations&lt;/strong&gt; introduce concepts. They should not provide detail and never reformat the same content available on the docs site as bullets.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Labs&lt;/strong&gt; create experiences.  People learn by doing and labs should be immersive.  They should be guided, but not a cut an paste exercise for the student.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs&lt;/strong&gt; are for detail. Students should get in the habit of reading and referring to the docs sources.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Resources</title>
+      <link>/public/cf-oss-training/cloud-native/site/resources/</link>
+      <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/resources/</guid>
+      <description>
+
+&lt;h2 id=&#34;cloud-foundry&#34;&gt;Cloud Foundry&lt;/h2&gt;
+
+&lt;p&gt;Main Site: &lt;a href=&#34;https://www.cloudfoundry.org&#34;&gt;cloudfoundry.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mailing lists - &lt;a href=&#34;https://lists.cloudfoundry.org&#34;&gt;lists.cloudfoundry.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cloudfoundry&#34;&gt;github.com/cloudfoundry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cloudfoundry-incubator&#34;&gt;github.com/cloudfoundry-incubator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;bosh&#34;&gt;Bosh&lt;/h2&gt;
+
+&lt;p&gt;Main Site: &lt;a href=&#34;https://bosh.io&#34;&gt;bosh.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;stemcells: &lt;a href=&#34;http://bosh.io/stemcells&#34;&gt;bosh.io/stemcells&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;releases: &lt;a href=&#34;http://bosh.io/releases&#34;&gt;bosh.io/releases&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;manifest: &lt;a href=&#34;http://bosh.io/docs/deployment-manifest.html&#34;&gt;bosh.io/docs/deployment-manifest.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Microservices on Cloud Foundry: Going Cloud Native</title>
+      <link>/public/cf-oss-training/cloud-native/site/</link>
+      <pubDate>Tue, 19 Apr 2016 18:59:04 -0600</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/student-zip/cf-oss-cloud-native.zip&#34; target=&#34;_blank&#34;&gt;&lt;i class=&#34;fa fa-download&#34;&gt; &lt;/i&gt; Download&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This course is designed to give its students a hands on experience of designing applications for Cloud Foundry. We will give an overview of Cloud Foundry and its tools from the point of view of an application developer and how to architect polyglot applications for deployment and scaling in the cloud.&lt;/p&gt;
+
+&lt;p&gt;This training is targeted at developers with little hands-on Cloud Foundry experience and those who have an interest in deploying innovative, microservice-based systems into the cloud.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Prerequisites</title>
+      <link>/public/cf-oss-training/cloud-native/site/prereqs/</link>
+      <pubDate>Tue, 19 Apr 2016 18:59:04 -0600</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/prereqs/</guid>
+      <description>
+
+&lt;p&gt;Please review the requirement below and &lt;strong&gt;complete the following prerequisites before class&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;experience&#34;&gt;Experience&lt;/h2&gt;
+
+&lt;p&gt;This training is targeted at people with:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Basic Cloud Foundry experience&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Some experience deploying web-based applications&lt;/li&gt;
+&lt;li&gt;Comfortable using the command line and SSH&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;system-requirements&#34;&gt;System Requirements&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Linux, Windows or OS X (all 64bit)&lt;/li&gt;
+&lt;li&gt;1GB of FREE RAM&lt;/li&gt;
+&lt;li&gt;ability to install software&lt;/li&gt;
+&lt;li&gt;code editor of choice&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://run.pivotal.io&#34; target=&#34;_blank&#34;&gt;Pivotal Web Services&lt;/a&gt; account or ability to create one&lt;/li&gt;
+&lt;li&gt;curl (for windows: &lt;a href=&#34;https://curl.haxx.se/download.html&#34;&gt;https://curl.haxx.se/download.html&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Binding and Environment Variables</title>
+      <link>/public/cf-oss-training/cloud-native/site/labs/bind/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/labs/bind/</guid>
+      <description>
+
+&lt;p&gt;In the last section, we lost all our data when we restarted our app.  In this section, we will fix that.&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-a-mysql-instance&#34;&gt;Creating a MySQL instance&lt;/h2&gt;
+
+&lt;p&gt;We will create an instance of mysql and bind it to our app, thereby removing state from memory.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;cf marketplace&lt;/code&gt; to view the available services and plans.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;cf create-service&lt;/code&gt; to create a MySQL service instance &lt;code&gt;cleardb&lt;/code&gt; and select the &lt;em&gt;free&lt;/em&gt; plan &lt;code&gt;spark&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;checking-your-work&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;You should be able to see your service instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
+...
+
+name           service   plan    bound apps   last operation   
+people-mysql   cleardb   spark                create succeeded   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;binding-to-your-app&#34;&gt;Binding to Your App&lt;/h2&gt;
+
+&lt;p&gt;You need to bind your service instance to your application so that is can be used.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;cf bind-service&lt;/code&gt; to bind your service instance to your application.&lt;/li&gt;
+&lt;li&gt;Restage your app so that it uses the new service: &lt;code&gt;cf restage&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;checking-your-work-1&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;You should be able to see your service instance bound to your app:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
+
+...
+name         service   plan    bound apps   last operation   
+people-mysql cleardb   spark   people       create succeeded
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;testing-statelessness&#34;&gt;Testing Statelessness&lt;/h2&gt;
+
+&lt;p&gt;At this point, you should be able to put data into your service that lands in the external mysql service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl -X POST -H &amp;quot;Content-Type:application/json&amp;quot; -d &#39;{&amp;quot;firstName&amp;quot;:&amp;quot;Steve&amp;quot;, &amp;quot;lastName&amp;quot;:&amp;quot;Greenberg&amp;quot;, &amp;quot;company&amp;quot;:&amp;quot;Pivotal&amp;quot;}&#39; http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Restart your app.&lt;/li&gt;
+&lt;li&gt;You should still see the data:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+...
+
+{
+  &amp;quot;_embedded&amp;quot; : {
+    &amp;quot;people&amp;quot; : [ {
+      &amp;quot;firstName&amp;quot; : &amp;quot;Steve&amp;quot;,
+      &amp;quot;lastName&amp;quot; : &amp;quot;Greenberg&amp;quot;,
+      &amp;quot;company&amp;quot; : &amp;quot;Pivotal&amp;quot;,
+      &amp;quot;_links&amp;quot; : {
+        &amp;quot;self&amp;quot; : {
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/2&amp;quot;
+        },
+        &amp;quot;person&amp;quot; : {
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/2&amp;quot;
+        }
+      }
+    } ]
+  },
+  &amp;quot;_links&amp;quot; : {
+    &amp;quot;self&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people&amp;quot;
+    },
+    &amp;quot;profile&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/profile/people&amp;quot;
+    },
+    &amp;quot;search&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/search&amp;quot;
+    }
+  },
+  &amp;quot;page&amp;quot; : {
+    &amp;quot;size&amp;quot; : 20,
+    &amp;quot;totalElements&amp;quot; : 1,
+    &amp;quot;totalPages&amp;quot; : 1,
+    &amp;quot;number&amp;quot; : 0
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Congrats!  You now have a stateless app: &lt;a href=&#34;http://12factor.net/processes&#34; target=&#34;_blank&#34;&gt;12factor.net/processes&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;how-does-it-work&#34;&gt;How does it work?&lt;/h2&gt;
+
+&lt;p&gt;Run the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf env people
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will print the environment variables for your application.  Look for a &lt;code&gt;System-Provided&lt;/code&gt; variable called &lt;code&gt;VCAP_SERVICES&lt;/code&gt;.  You should see the service credentials for your mysql service.  Note:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Cloud Foundry leverage the environment variables: &lt;a href=&#34;http://12factor.net/config&#34; target=&#34;_blank&#34;&gt;12factor.net/config&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Cloud Foundry treats services as attached resources: &lt;a href=&#34;http://12factor.net/backing-services&#34; target=&#34;_blank&#34;&gt;12factor.net/backing-services&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;scale-out&#34;&gt;Scale Out&lt;/h2&gt;
+
+&lt;p&gt;By moving the state for your application into an external service, you can now scale out your application horizontally.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;cf scale&lt;/code&gt; to scale your app to 2 instances.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Notice that you can scale by adding instances: &lt;a href=&#34;http://12factor.net/concurrency&#34; target=&#34;_blank&#34;&gt;12factor.net/concurrency&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;checking-your-work-2&#34;&gt;Checking your Work&lt;/h3&gt;
+
+&lt;p&gt;You should see 2 instances:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf app people
+...
+
+0   running   2016-05-17 09:53:40 AM   0.1%     376.8M of 750M   153.7M of 1G      
+1   running   2016-05-17 10:01:35 AM   0.0%     232.1M of 750M   153.7M of 1G      
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;scale-down&#34;&gt;Scale Down&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;cf scale&lt;/code&gt; to reduce your app back to 1 instance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Notice that you can start quickly and dispose of unneeded instances gracefully: &lt;a href=&#34;http://12factor.net/disposability&#34; target=&#34;_blank&#34;&gt;12factor.net/disposability&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;beyond-the-class&#34;&gt;Beyond the Class&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CF also allows you to manipulate environment variables or create your own: &lt;a href=&#34;https://docs.run.pivotal.io/devguide/deploy-apps/environment-variable.html&#34; target=&#34;_blank&#34;&gt;docs.run.pivotal.io/devguide/deploy-apps/environment-variable.html&lt;/a&gt;.  Write an app that prints out all environment variables.&lt;/li&gt;
+&lt;li&gt;With CF, you can create instances of services that point to existing endpoints with existing credentials: &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/services/user-provided.html&#34; target=&#34;_blank&#34;&gt;docs.cloudfoundry.org/devguide/services/user-provided.html&lt;/a&gt;.  Create a User Provided Service that points to a DB and bind it to an app.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Circuit Breakers with Hystrix</title>
+      <link>/public/cf-oss-training/cloud-native/site/labs/hystrix/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/labs/hystrix/</guid>
+      <description>
+
+&lt;p&gt;Currently, our browser app does not fail gracefully when an issue occurs communicating with the people service.  Let&amp;rsquo;s fix that.&lt;/p&gt;
+
+&lt;h2 id=&#34;simulating-failure&#34;&gt;Simulating Failure&lt;/h2&gt;
+
+&lt;p&gt;We can simulate failure by stopping the people service app:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf stop people
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if you access your browser app and hit &lt;code&gt;Go&lt;/code&gt; on the &lt;code&gt;/people&lt;/code&gt; endpoint, you should see a 500 error.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;{
+  &amp;quot;timestamp&amp;quot;: 1463694694293,
+  &amp;quot;status&amp;quot;: 500,
+  &amp;quot;error&amp;quot;: &amp;quot;Internal Server Error&amp;quot;,
+  &amp;quot;exception&amp;quot;: &amp;quot;com.netflix.hystrix.exception.HystrixRuntimeException&amp;quot;,
+  &amp;quot;message&amp;quot;: &amp;quot;getPeople failed and no fallback available.&amp;quot;,
+  &amp;quot;path&amp;quot;: &amp;quot;/people&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;enabling-hystrix&#34;&gt;Enabling Hystrix&lt;/h2&gt;
+
+&lt;p&gt;Our browser app actually has Hystrix built in, but currently disabled.  You can enable Hystrix by setting the &lt;code&gt;SPRING_PROFILES_ACTIVE&lt;/code&gt; environment variable to &lt;code&gt;hystrix&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cf set-env browser SPRING_PROFILES_ACTIVE hystrix&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cf restart browser&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t&lt;/strong&gt; write your apps this way.  You should always be using Hystrix in your spring code, but we do this for the purposes of teaching.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;checking-your-work&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;You should see the environment variable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf env browser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;seeing-hystrix-in-action&#34;&gt;Seeing Hystrix in Action&lt;/h3&gt;
+
+&lt;p&gt;Now if you access your browser app and hit &lt;code&gt;Go&lt;/code&gt; on the &lt;code&gt;/people&lt;/code&gt; endpoint, you should see a graceful failure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Response Headers
+
+200 OK
+
+Date: Thu, 19 May 2016 22:17:46 GMT
+Server: Apache-Coyote/1.1
+X-B3-Traceid: e301c4c07b2ede89
+Content-Type: application/hal+json;charset=UTF-8
+X-Vcap-Request-Id: 44f30698-4e9b-4e8a-6e05-e6c1feada10d
+X-B3-Spanid: e301c4c07b2ede89
+X-B3-Sampled: 1
+Connection: keep-alive
+Content-Length: 2
+X-Application-Context: browser:hystrix,cloud:0
+
+...
+
+Properties
+{}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case, the fallback method is very simple.  It returns an empty array.  The fallback could be much more useful as well.&lt;/p&gt;
+
+&lt;h3 id=&#34;restoring&#34;&gt;Restoring&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Now, start your people app.  Access the browser a few times again until service is restored.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Pushing a data service</title>
+      <link>/public/cf-oss-training/cloud-native/site/labs/push/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/labs/push/</guid>
+      <description>
+
+&lt;p&gt;In this exercise, you will push a restful data microservice.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note: Currently this microservice does not adhere to all of the 12 factor app principles.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;the-app&#34;&gt;The App&lt;/h2&gt;
+
+&lt;p&gt;The app is a very simple Spring Data Rest application. You can download the jar file here: &lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/site/resources/people.jar&#34; target=&#34;_blank&#34;&gt;/public/cf-oss-training/cloud-native/site/resources/people.jar&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you are comfortable with git and gradle, you can also clone the source here &lt;a href=&#34;https://github.com/spgreenberg/people&#34; target=&#34;_blank&#34;&gt;github.com/spgreenberg/people&lt;/a&gt; and build it yourself.&lt;/p&gt;
+
+&lt;h3 id=&#34;push&#34;&gt;Push&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;code&gt;cf push&lt;/code&gt; to deploy the application.  You should:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create 1 instance of the app&lt;/li&gt;
+&lt;li&gt;Allocate 750M of memory&lt;/li&gt;
+&lt;li&gt;Use the -p flag to point to the jar file&lt;/li&gt;
+&lt;li&gt;Use &amp;ndash;random-route to ensure no collisions with other students&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf push people --random-route -b java_buildpack -p ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;checking-your-work&#34;&gt;Checking Your Work&lt;/h4&gt;
+
+&lt;p&gt;Make sure your app deployed correctly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf apps
+...
+
+name     requested state   instances   memory   disk   urls   
+people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The app also has an endpoint called &lt;code&gt;/people&lt;/code&gt;.  You should also be able to curl it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;On Windows, if you don&amp;rsquo;t have curl you can get it from here: &lt;a href=&#34;https://curl.haxx.se/download.html&#34; target=&#34;_blank&#34;&gt;curl.haxx.se/download.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+...
+
+{
+  &amp;quot;_embedded&amp;quot; : {
+    &amp;quot;people&amp;quot; : [ ]
+  },
+  &amp;quot;_links&amp;quot; : {
+    &amp;quot;self&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people&amp;quot;
+    },
+    &amp;quot;profile&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/profile/people&amp;quot;
+    },
+    &amp;quot;search&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/search&amp;quot;
+    }
+  },
+  &amp;quot;page&amp;quot; : {
+    &amp;quot;size&amp;quot; : 20,
+    &amp;quot;totalElements&amp;quot; : 0,
+    &amp;quot;totalPages&amp;quot; : 0,
+    &amp;quot;number&amp;quot; : 0
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;adding-data&#34;&gt;Adding Data&lt;/h2&gt;
+
+&lt;p&gt;You can add data by issuing a curl request to POST to the people endpoint.  Be sure to replace your information and URL below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl -X POST -H &amp;quot;Content-Type:application/json&amp;quot; -d &#39;{&amp;quot;firstName&amp;quot;:&amp;quot;Steve&amp;quot;, &amp;quot;lastName&amp;quot;:&amp;quot;Greenberg&amp;quot;, &amp;quot;company&amp;quot;:&amp;quot;Pivotal&amp;quot;}&#39; http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, you should see the data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+...
+
+{
+  &amp;quot;_embedded&amp;quot; : {
+    &amp;quot;people&amp;quot; : [ {
+      &amp;quot;firstName&amp;quot; : &amp;quot;Steve&amp;quot;,
+      &amp;quot;lastName&amp;quot; : &amp;quot;Greenberg&amp;quot;,
+      &amp;quot;company&amp;quot; : &amp;quot;Pivotal&amp;quot;,
+      &amp;quot;_links&amp;quot; : {
+        &amp;quot;self&amp;quot; : {
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/1&amp;quot;
+        },
+        &amp;quot;person&amp;quot; : {
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/1&amp;quot;
+        }
+      }
+    } ]
+  },
+  &amp;quot;_links&amp;quot; : {
+    &amp;quot;self&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people&amp;quot;
+    },
+    &amp;quot;profile&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/profile/people&amp;quot;
+    },
+    &amp;quot;search&amp;quot; : {
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/search&amp;quot;
+    }
+  },
+  &amp;quot;page&amp;quot; : {
+    &amp;quot;size&amp;quot; : 20,
+    &amp;quot;totalElements&amp;quot; : 1,
+    &amp;quot;totalPages&amp;quot; : 1,
+    &amp;quot;number&amp;quot; : 0
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;restart-your-app&#34;&gt;Restart your App&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Now restart your app with &lt;code&gt;cf restart&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Curl your app again:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What happened?  Why?  Not very durable, right?  We will correct this in the next exercise.&lt;/p&gt;
+
+&lt;h2 id=&#34;beyond-the-class&#34;&gt;Beyond the Class&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What aspects of 12 factor have you already experienced?  &lt;a href=&#34;http://12factor.net&#34; target=&#34;_blank&#34;&gt;12factor.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Service Discovery with Eureka</title>
+      <link>/public/cf-oss-training/cloud-native/site/labs/eureka/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/labs/eureka/</guid>
+      <description>
+
+&lt;p&gt;In this exercise, you will deploy a &lt;a href=&#34;http://cloud.spring.io/spring-cloud-netflix/&#34; target=&#34;_blank&#34;&gt;Eureka&lt;/a&gt; server.  You will also deploy a  new app &lt;code&gt;browser&lt;/code&gt; that consumes data from our people service.&lt;/p&gt;
+
+&lt;h2 id=&#34;about-the-app&#34;&gt;About the App&lt;/h2&gt;
+
+&lt;p&gt;The browser app uses Eureka to identify instances of our people service.  It uses the &lt;a href=&#34;https://github.com/Netflix/ribbon&#34; target=&#34;_blank&#34;&gt;Ribbon&lt;/a&gt; support built into &lt;a href=&#34;http://cloud.spring.io/spring-cloud-netflix/&#34; target=&#34;_blank&#34;&gt;Spring Cloud Netflix&lt;/a&gt; to provide client side load balancing.  The browser app also leverages &lt;a href=&#34;https://github.com/Netflix/feign&#34; target=&#34;_blank&#34;&gt;Feign&lt;/a&gt; support which makes writing HTTP clients in java simple.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: PWS trial accounts are limited to 2GB, not enough capacity to scale our people-service instances.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;deploying-eureka&#34;&gt;Deploying Eureka&lt;/h2&gt;
+
+&lt;p&gt;First you need to deploy the Eureka server.  A prebuilt jar is provided here &lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/site/resources/eureka.jar&#34; target=&#34;_blank&#34;&gt;/public/cf-oss-training/cloud-native/site/resources/eureka.jar&lt;/a&gt; or you can download and build the source from github &lt;a href=&#34;https://github.com/spgreenberg/eureka&#34; target=&#34;_blank&#34;&gt;github.com/spgreenberg/eureka&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Push the Eureka server to cloud foundry&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf push eureka -p &amp;lt;path-to-jar&amp;gt; -m 512M -i 1 --random-route -b java_buildpack
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;checking-your-work&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;You should see the eureka app running: &lt;code&gt;cf apps&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;accessing-the-eureka-console&#34;&gt;Accessing the Eureka Console&lt;/h3&gt;
+
+&lt;p&gt;Eureka has a built in web UI that shows information on the services registered. You can access it by going to the URL in your browser.  At this point, you won&amp;rsquo;t see any services registered.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: You can ignore the scary sounding error messages displayed in the UI.  This is a single instance deployment of Eureka, not meant for production.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;creating-a-user-provided-service-for-eureka&#34;&gt;Creating a User Provided Service for Eureka&lt;/h3&gt;
+
+&lt;p&gt;We will need to tell our applications where our Eureka server is.  There are many ways to do this, but for the purpose of this class, we will create a user provided service instance that can be bound to any client or service apps.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf cups eureka-service -p &#39;{&amp;quot;uri&amp;quot;:&amp;quot;http://&amp;lt;YOUR_EUREKA&amp;gt;&amp;quot;}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;registering-the-people-service&#34;&gt;Registering the People Service&lt;/h2&gt;
+
+&lt;p&gt;The people service is written with a Eureka client which is disabled by default.  For the purpose of the class, we can use Spring Profiles to activate the Eureka client simply by setting an environment variable.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Set SPRING_PROFILES_ACTIVE=cloud,eureka for your people service.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf set-env people SPRING_PROFILES_ACTIVE cloud,eureka
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Use &lt;code&gt;cf bind-service&lt;/code&gt; to bind the &lt;code&gt;eureka-service&lt;/code&gt; you created above to your people service app.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use &lt;code&gt;cf restage&lt;/code&gt; so the people service can pick up the changes.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;checking-your-work-1&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;You should be able to see the environment variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf env people
+...
+
+User-Provided:
+SPRING_PROFILES_ACTIVE: cloud,eureka
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should also see the service instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
+...
+
+name             service         plan    bound apps   last operation   
+eureka-service   user-provided           people          
+people-mysql     cleardb         spark   people       create succeeded  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;viewing-your-service-in-eureka&#34;&gt;Viewing Your Service in Eureka&lt;/h3&gt;
+
+&lt;p&gt;Within a few minutes of restaging, you should see your people service registered in the Eureka console.&lt;/p&gt;
+
+&lt;h2 id=&#34;pushing-the-browser-app&#34;&gt;Pushing the Browser App&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Now, push the browser app.  The jar file is located here &lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/site/resources/browser.jar&#34; target=&#34;_blank&#34;&gt;/public/cf-oss-training/cloud-native/site/resources/browser.jar&lt;/a&gt; or you can download and build the project yourself: &lt;a href=&#34;https://github.com/spgreenberg/browser&#34; target=&#34;_blank&#34;&gt;github.com/spgreenberg/browser&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Bind the Eureka service and restart the browser app.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;checking-your-work-2&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;You should see the app.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf apps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see the Eureka service bound to the browser app.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should also see the browser app registered in the Eureka console.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-the-browser-app&#34;&gt;Using the browser app&lt;/h3&gt;
+
+&lt;p&gt;The Browser app simply logs requests and results to the REST endpoints of the app.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Open the browser app in your web browser&lt;/li&gt;
+&lt;li&gt;In the &lt;code&gt;Explorer&lt;/code&gt; text box, enter &lt;code&gt;/people&lt;/code&gt; and hit &lt;code&gt;GO&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The first request &lt;em&gt;might&lt;/em&gt; fail (not gracefully).  This is b/c the browser service is still fetching information from Eureka.  In the next exercise, we will add resiliency so we can fail gracefully.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;what-is-happening&#34;&gt;What is happening?&lt;/h3&gt;
+
+&lt;p&gt;When successful, the browser app is using Eureka to locate the people service instances, then using Ribbon to load balance requests to those instances (b/c of quota limits, we only have 1 instance).  Should we add/remove instances of the people service, or should that service move, updates will happen automatically.&lt;/p&gt;
+
+&lt;p&gt;Congratulations!  You have successfully used service discovery to consume a microservice.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Setup</title>
+      <link>/public/cf-oss-training/cloud-native/site/labs/setup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/public/cf-oss-training/cloud-native/site/labs/setup/</guid>
+      <description>
+
+&lt;h2 id=&#34;pivotal-web-services&#34;&gt;Pivotal Web Services&lt;/h2&gt;
+
+&lt;p&gt;We will use Pivotal Web Services for this class.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you don&amp;rsquo;t have an account, sign up now at: &lt;a href=&#34;https://try.run.pivotal.io/homepage&#34; target=&#34;_blank&#34;&gt;try.run.pivotal.io/homepage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;You will also need the Cloud Foundry command line interface: &lt;a href=&#34;https://console.run.pivotal.io/tools&#34; target=&#34;_blank&#34;&gt;console.run.pivotal.io/tools&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you already have the CLI, be sure you have the same recent version above.&lt;/p&gt;
+
+&lt;h3 id=&#34;checking-your-work&#34;&gt;Checking Your Work&lt;/h3&gt;
+
+&lt;p&gt;Be sure you have correctly installed the cli.  From a terminal window/command prompt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;  cf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see the self documenting help text.  This will be very useful as you go through the class.&lt;/p&gt;
+
+&lt;h2 id=&#34;cf-help&#34;&gt;CF Help&lt;/h2&gt;
+
+&lt;p&gt;If you checked your work, you noticed the CF cli is self documenting.  You can run &lt;code&gt;cf help&lt;/code&gt; at any time to see a list of commands.  You can also run &lt;code&gt;cf &amp;lt;SOME_COMMAND&amp;gt; --help&lt;/code&gt; to see the details for a specific command.&lt;/p&gt;
+
+&lt;h3 id=&#34;login-target&#34;&gt;Login &amp;amp; Target&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;code&gt;cf login&lt;/code&gt; to target and login to Pivotal Web Services.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If you are new to PWS, you will notice you are automatically directed to your org and the &amp;lsquo;development&amp;rsquo; space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;checking-your-work-1&#34;&gt;Checking Your Work&lt;/h4&gt;
+
+&lt;p&gt;You should see output similar to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;API endpoint:   https://api.run.pivotal.io (API version: 2.56.0)   
+User:           sgreenberg@pivotal.io   
+Org:            Pivotal-Enablement   
+Space:          development
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, you can check where you are logged in and targeted at anytime using &lt;code&gt;cf target&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

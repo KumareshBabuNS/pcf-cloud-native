@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.15" />
+<title>Service Discovery</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="fonts/source-sans-pro/source-sans-pro.css" rel='stylesheet' type='text/css'>
+<link href="fonts/Roboto/Roboto.css" rel='stylesheet' type='text/css'>
+<link href="css/pivotal-ui.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/pivotal.css">
+<link rel="pivotal icon" type="image/png" href="img/P_Marks_Knockout_Teal.png">
+
+<script src="js/jquery-1.12.1.min.js"></script>
+<script src="js/js.cookie.js"></script>
+<script src="js/pivotal-reveal.js"></script>
+<script src="lib/js/head.min.js"></script>
+<script src="js/settings/presentation-settings.js"></script>
+
+    </head>
+    <body>
+      <div class="reveal">
+        <div class="slides">
+          
+  <section class="title-slide" data-background="#243640">
+
+
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 h2">Going Cloud Native</span><br />
+      <h1 class="type-neutral-8">Service Discovery</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-name"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-title type-brand-5"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-contact"></span>
+    </div>
+  </div>
+
+
+  <aside class="notes">
+    In this section, we cover the basics of service discovery and access.
+  </aside>
+
+</section>
+
+
+          
+            <section class="content-slide"
+   data-background="#243641"
+  
+   data-menu-title="Interactions"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Services need to be...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row top-bottom">
+  <div class="txt-c">
+    <div class="row type-neutral-5 top fragment shrink" data-fragment-index="2">
+      <span class="fragment" data-fragment-index="1">Discoverable</span>
+    </div>
+    <div class="row type-neutral-10 bottom fragment grow" data-fragment-index="2">
+      <span class="fragment" data-fragment-index="2">Accessible</span>
+    </div>
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  In a distributed system, there are many interactions between services.  Services need to be discoverable and easily (but securely) accessible.
+These interactions must be efficient and fault tolerant.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Challenge"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Stateless services are constantly...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    
+    
+      <div class="row ">
+        <h1 class="type-neutral-6">scaling</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6">failing</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6">recovering</h1>
+      </div>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  The ephemeral nature of stateless services coupled with the elastic scalability of the cloud, make service interactions a challenging problem.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Distributed Dependencies"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">In distributed systems...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    
+    
+      <div class="row ">
+        <h1 class="type-neutral-6">Application dependencies <strong>cease to be</strong> a method call away</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6">Configuring each client is <strong>error prone</strong> and <strong>brittle</strong></h1>
+      </div>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  In a monolith, the dependencies are all there or the monolith is completely down.</p>
+
+<p>How have we discovered services in the past?</p>
+
+<ul>
+<li>Service Locators</li>
+<li>Dependency Injection</li>
+<li>Service Registries</li>
+</ul>
+
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#243641"
+  
+   data-menu-title="Service Discovery"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4"></h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row">
+  <div class="col-md-24 txt-c">
+    
+      Service Discovery</p>
+
+<p><img src="img/service-registry.png" style="max-height: 500px" /></p>
+
+<p>Client Side load-balancing
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  Service discovery leverages a fault tolerant, distributed and scalable registry.  The registry allows services to self register and client to find instances of services.
+Client side load-balancing allows clients to directly connect, removing the single point of failure in many ESB solutions.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Load-balancing"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Client side load-balancing is...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    
+    
+      <div class="row ">
+        <h1 class="type-neutral-6"><strong>Simple</strong> - no need for another load-balancer</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6"><strong>Efficient</strong> - minimize components between calls</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6"><strong>Flexible</strong> - URIs change</h1>
+      </div>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  Client&rsquo;s should be able to access services directly without knowing brittle credentials like uris.  Load balancers fail.  Instances come and go.
+</aside>
+
+
+</section>
+
+          
+
+          <section class="last-slide aligner" data-background="#0A0203" data-transition="zoom" data-menu-title="Cloud Foundry">
+  <div class="row">
+    <div class="col-sm-24 txt-c" style="margin-top: 80px;">
+      <img src="img/cf-foundation-white.png"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-24 txt-c" style="margin-top: 30px;">
+      <h1 class="type-neutral-5">Speed &nbsp;&nbsp; | &nbsp;&nbsp; Simplicity &nbsp;&nbsp; | &nbsp;&nbsp; Control<h1>
+    </div>
+  </div>
+</section>
+
+        </div>
+        <div class="copyright">
+          
+            (C) Copyright 2016 Pivotal Software, Inc. All Rights Reserved.
+          
+        </div>
+  			<div class="logo">
+          
+  				  <img src="img/cf.png" alt="logo" title="logo" />
+          
+  			</div>
+      </div>
+
+
+      <!-- jQuery -->
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/pivotal-ui.min.js"></script>
+<script src="js/reveal.js"></script>
+
+      <div class="settings-icon">
+  <i class="type-accent-3 fa fa-cog" data-toggle="modal" data-target="#settingsModal"></i>
+</div>
+<div class="modal fade modal-basic" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Presentation Settings</h4>
+      </div>
+      <div class="modal-body">
+        <div class="presenter">
+          <p>Set presenter information below.  These values will show on the title slide.</p>
+          <form role="form">
+            <div class="form-group">
+              <label for="presenterName">Presenter Name</label>
+              <input type="text" class="form-control" id="presenterName" placeholder="Presenter Name">
+            </div>
+            <div class="form-group">
+              <label for="presenterTitle">Presenter Title</label>
+              <input type="text" class="form-control" id="presenterTitle" placeholder="Presenter Title">
+            </div>
+            <div class="form-group">
+              <label for="presenterContact">Presenter Contact</label>
+              <input type="text" class="form-control" id="presenterContact" placeholder="Presenter Contact">
+            </div>
+          </form>
+        </div>
+        <hr class="divider-alternate-2"/>
+        <div class="settings">
+          <p>Toggle settings for your presentation by clicking below.</p>
+          <ul class="list-group">
+            <li class="list-group-item"><a onclick="PresentationSettings.toggleShowNotes()"><i id="showNotes"></i>On Screen Notes</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lowlight" onclick="PresentationSettings.updateFromForm()" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+      <script>
+
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          slideNumber: true,
+          history: true,
+          keyboard: true,
+          overview: true,
+          center: false,
+          touch: true,
+          loop: false,
+          rtl: false,
+          fragments: true,
+          embedded: false,
+          help: true,
+          showNotes: false,
+          previewLinks: true,
+          transition: 'concave', 
+          backgroundTransition: 'fade',
+          margin: 0,
+          minScale: 0.2,
+          maxScale: 2.0,
+
+           
+
+          dependencies: [
+              
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+            
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+            
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+            
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+
+            
+            { src: 'plugin/notes/notes.js', async: true },
+
+            
+            { src: 'plugin/math/math.js', async: true },
+
+            { src: 'plugin/menu/menu.js', async: true }
+					],
+
+          menu: {
+            
+            
+            side: 'left',
+
+            
+            
+            numbers: false,
+
+            
+            
+            hideMissingTitles: false,
+
+            
+            
+            markers: true,
+
+            
+            
+            
+
+
+            
+            
+            themes: false,
+
+            
+            transitions: false,
+
+            
+            
+            openButton: true,
+
+            
+            
+            
+            openSlideNumber: false,
+
+            
+            
+            
+            keyboard: true
+          }
+
+
+        });
+
+        Reveal.addEventListener( 'ready', function( event ) {
+          PresentationSettings.updateFromCookie();
+        });
+
+      </script>
+    </body>
+</html>

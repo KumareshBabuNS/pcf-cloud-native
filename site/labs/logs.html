@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <title>Logs - Cloud Native with Microservices</title>
+
+    
+    <meta name="description" content="CF Foundation Training - Cloud Native with Microservices">
+    
+    <link rel="canonical" href="../index.html">
+    
+    <meta name="author" content="sgreenberg@pivotal.io">
+    
+
+    <meta property="og:url" content="/public/cf-oss-training/cloud-native/site/">
+    <meta property="og:title" content="Cloud Native with Microservices">
+    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/cf-rabbit.png">
+    <meta name="apple-mobile-web-app-title" content="Cloud Native with Microservices">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('../fonts/icon.eot@52m981');
+        src: url('../fonts/icon.eot@')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff@52m981')
+               format('woff'),
+             url('../fonts/icon.ttf@52m981')
+               format('truetype'),
+             url('../fonts/icon.svg@52m981')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css">
+    <link rel="stylesheet" href="../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/css/style.css">
+    
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  </head>
+  <body class="palette-primary-blue-grey palette-accent-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    
+      <div class="button">
+        <img src="../img/cf-white.png" style="height: 40px; margin-top: 8px; vertical-align: middle"/>
+      </div>
+    
+    <div class="stretch">
+      <div class="title" style="text-align: right">
+        Logs
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/pivotal-enablement/cf-oss-training" title="@pivotal-enablement/cf-oss-training on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+
+    
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/pivotal-enablement/cf-oss-training" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="../img/cf-rabbit.png">
+        </div>
+      
+      <div class="name">
+        <strong>Cloud Native with Microservices <span class="version">v1.0.0</span></strong>
+
+      </div>
+    </div>
+  </a>
+
+  <hr />
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+      
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Overview" href="../index.html">
+	
+	Overview
+</a>
+
+  
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Prerequisites" href="../prereqs/index.html">
+	
+	Prerequisites
+</a>
+
+  
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Agenda" href="../agenda/index.html">
+	
+	Agenda
+</a>
+
+  
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Resources" href="../resources/index.html">
+	
+	Resources
+</a>
+
+  
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Notes" href="../notes/index.html">
+	
+	Notes
+</a>
+
+  
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="http://www.apache.org/licenses/LICENSE-2.0">
+	
+	License
+</a>
+
+  
+  
+</li>
+
+        </ul>
+        
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Logs </h1>
+
+			
+
+<p>In this exercise, you will view logs for your application and instrumentation for distributed tracing.</p>
+
+<h2 id="cli-logs">CLI Logs</h2>
+
+<p>Cloud Foundry aggregates logs related to your application.  These include logs for components related to calls to your application.</p>
+
+<p>The browser app has been instrumented using <a href="http://cloud.spring.io/spring-cloud-sleuth/" target="_blank">Spring Cloud Sleuth</a>.  This add span information to your logs and can be easily hooked up to external systems for consumption.  We won&rsquo;t have time to deploy and configure an external service like Zipkin, but you can still view this instrumentation in the logs.</p>
+
+<h3 id="tailing-logs">Tailing Logs</h3>
+
+<ul>
+<li>Use <code>cf logs</code> to tail logs for your browser application.</li>
+<li>Issue a few requests through the web interface.</li>
+</ul>
+
+<p>You should see logs from the application but also the Router component of CF.</p>
+
+<pre><code class="language-sh">2016-05-20T12:50:59.07-0600 [RTR/5] &lt;-- RTR is the Router.
+</code></pre>
+
+<p>Also note:</p>
+
+<pre><code class="language-sh">2016-05-20T12:52:11.07-0600 [APP/0]      OUT 2016-05-20 18:52:11.068  INFO [browser,92ca8a46b9903cdc,92ca8a46b9903cdc,true]
+</code></pre>
+
+<p>The section <code>[browser,92ca8a46b9903cdc,92ca8a46b9903cdc,true]</code> is instrumented by Spring Cloud Sleuth.  You are seeing [app-name, spanID, traceID].</p>
+
+<p>This info is also available in the browser UI.</p>
+
+<blockquote>
+<p>Notice that cloud foundry automatically treats your application logs as streams and makes them easily accessible: <a href="http://12factor.net/logs">http://12factor.net/logs</a></p>
+</blockquote>
+
+<h2 id="beyond-the-class">Beyond the Class</h2>
+
+<ul>
+<li>Stream Application Logs to a 3rd party tool: <a href="https://docs.cloudfoundry.org/devguide/services/log-management-thirdparty-svc.html" target="_blank">docs.cloudfoundry.org/devguide/services/log-management-thirdparty-svc.html</a></li>
+<li>Use PCF Metrics to view detailed information about your app: <a href="http://docs.run.pivotal.io/metrics/using.html" target="_blank">docs.run.pivotal.io/metrics/using.html</a></li>
+<li>Deploy the Microservices Dashboard: <a href="https://github.com/ordina-jworks/microservices-dashboard" target="_blank">github.com/ordina-jworks/microservices-dashboard</a></li>
+<li>Use <a href="http://start.spring.io" target="_blank">start.spring.io</a> to generate a zipkin server.  Deploy it to CF and hook it up to your microservices.</li>
+</ul>
+
+
+
+			<footer class="footer" style="text-align: right; color: #ccc">
+				
+				&copy; 2016 Copyright Pivotal Software, Inc.  All Rights Reserved.
+				
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '\/public\/cf-oss-training\/cloud-native\/site\/';
+      var repo_id  = 'pivotal-enablement\/cf-oss-training';
+    
+    </script>
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(headers.length > 0) {
+        for(var i = 0; i < headers.length; i++) {
+          var li = document.createElement("li");
+          li.setAttribute("class", "anchor");
+
+          var a  = document.createElement("a");
+          a.setAttribute("href", "#" + headers[i].id);
+          a.setAttribute("title", headers[i].innerHTML);
+          a.innerHTML = headers[i].innerHTML;
+          
+          li.appendChild(a)
+          scrollspy.appendChild(li);
+        }
+      } else {
+        scrollspy.parentElement.removeChild(scrollspy)
+      }
+      
+
+      /* Add permanent link next to the headers */
+      var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+      for(var i = 0; i < headers.length; i++) {
+          var a = document.createElement("a");
+          a.setAttribute("class", "headerlink");
+          a.setAttribute("href", "#" + headers[i].id);
+          a.setAttribute("title", "Permanent link")
+          a.innerHTML = "#";
+          headers[i].appendChild(a);
+      }
+    </script>
+
+    
+
+    <script src="https://gohugo.io/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

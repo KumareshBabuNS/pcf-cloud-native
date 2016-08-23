@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.15" />
+<title>Circuit Breaking</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="fonts/source-sans-pro/source-sans-pro.css" rel='stylesheet' type='text/css'>
+<link href="fonts/Roboto/Roboto.css" rel='stylesheet' type='text/css'>
+<link href="css/pivotal-ui.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/pivotal.css">
+<link rel="pivotal icon" type="image/png" href="img/P_Marks_Knockout_Teal.png">
+
+<script src="js/jquery-1.12.1.min.js"></script>
+<script src="js/js.cookie.js"></script>
+<script src="js/pivotal-reveal.js"></script>
+<script src="lib/js/head.min.js"></script>
+<script src="js/settings/presentation-settings.js"></script>
+
+    </head>
+    <body>
+      <div class="reveal">
+        <div class="slides">
+          
+  <section class="title-slide" data-background="#243640">
+
+
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 h2">Going Cloud Native</span><br />
+      <h1 class="type-neutral-8">Circuit Breaking</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-name"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-title type-brand-5"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-sm-offset-6 txt-l">
+      <span class="type-neutral-8 presenter-contact"></span>
+    </div>
+  </div>
+
+
+  <aside class="notes">
+    In this section, we cover the basics of circuit breaking.
+  </aside>
+
+</section>
+
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Interactions"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Interactions between services need to be...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row top-bottom">
+  <div class="txt-c">
+    <div class="row type-neutral-5 top fragment shrink" data-fragment-index="2">
+      <span class="fragment" data-fragment-index="1">Reliable</span>
+    </div>
+    <div class="row type-neutral-10 bottom fragment grow" data-fragment-index="2">
+      <span class="fragment" data-fragment-index="2">Fault Tolerant</span>
+    </div>
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  In a distributed system, there are many interactions between services.  These interactions must be reliable and fault tolerant.  Otherwise, isssues cascade
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Cascading Failure"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Cascading Failure</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    
+    
+      <div class="row ">
+        <h1 class="type-neutral-6">GIVEN: <strong>app</strong> that relies on <strong>30 services</strong></h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6">each service: 99.99% uptime</h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6"><strong>99.7% uptime</strong></h1>
+      </div>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  Example: Amazon product page made up of 20+ service calls.  What would happen if one call (like &ldquo;Recommendations&rdquo;) failed?
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Cascading Failure"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">Cascading Failure</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row quote">
+  <div class="col-sm-18 col-sm-offset-6 txt-l">
+    
+    
+      <div class="row ">
+        <h1 class="type-neutral-6">0.3% of 1 billion requests = <strong>3,000,000 failures</strong></h1>
+      </div>
+    
+      <div class="row fragment">
+        <h1 class="type-neutral-6">Reality is <strong>generally worse</strong></h1>
+      </div>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  Source: <a href="https://github.com/Netflix/Hystrix/wiki">https://github.com/Netflix/Hystrix/wiki</a>
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Recovering Gracefully"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4">And if we don&#39;t recover gracefully...</h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row">
+  <div class="col-md-24 txt-c">
+    
+      <img src="img/black-friday.jpg" style="max-height: 500px"/></p>
+
+<p><span style="font-size: 0.3em">source: www.dailymail.co.uk</span>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  If we don&rsquo;t recover gracefully, we will crush our systems as they try to come back online.
+</aside>
+
+
+</section>
+
+          
+            <section class="content-slide"
+   data-background="#232B2F"
+  
+   data-menu-title="Circuit Breaker"
+  >
+
+  <div class="title">
+  
+  <div class="row">
+    <div class="col-md-24 txt-l">
+      <h1 class=" type-neutral-4"></h1>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+      <div class="row">
+  <div class="col-md-24 txt-c">
+    
+      Circuit Breaking</p>
+
+<p><img src="img/circuit-breaker.png" style="max-height: 500px"/>
+    
+  </div>
+</div>
+
+    
+  
+
+  
+<aside class="notes">
+  If a request times out or fails, the breaker is tripped - employing a fallback method.  After a timeout, a request is attempted.  If it succeeds, the breaker moves to half open, effectively throttling traffic.  If subsequent calls succeed, the circuit closes.
+</aside>
+
+
+</section>
+
+          
+
+          <section class="last-slide aligner" data-background="#0A0203" data-transition="zoom" data-menu-title="Cloud Foundry">
+  <div class="row">
+    <div class="col-sm-24 txt-c" style="margin-top: 80px;">
+      <img src="img/cf-foundation-white.png"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-24 txt-c" style="margin-top: 30px;">
+      <h1 class="type-neutral-5">Speed &nbsp;&nbsp; | &nbsp;&nbsp; Simplicity &nbsp;&nbsp; | &nbsp;&nbsp; Control<h1>
+    </div>
+  </div>
+</section>
+
+        </div>
+        <div class="copyright">
+          
+            (C) Copyright 2016 Pivotal Software, Inc. All Rights Reserved.
+          
+        </div>
+  			<div class="logo">
+          
+  				  <img src="img/cf.png" alt="logo" title="logo" />
+          
+  			</div>
+      </div>
+
+
+      <!-- jQuery -->
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/pivotal-ui.min.js"></script>
+<script src="js/reveal.js"></script>
+
+      <div class="settings-icon">
+  <i class="type-accent-3 fa fa-cog" data-toggle="modal" data-target="#settingsModal"></i>
+</div>
+<div class="modal fade modal-basic" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Presentation Settings</h4>
+      </div>
+      <div class="modal-body">
+        <div class="presenter">
+          <p>Set presenter information below.  These values will show on the title slide.</p>
+          <form role="form">
+            <div class="form-group">
+              <label for="presenterName">Presenter Name</label>
+              <input type="text" class="form-control" id="presenterName" placeholder="Presenter Name">
+            </div>
+            <div class="form-group">
+              <label for="presenterTitle">Presenter Title</label>
+              <input type="text" class="form-control" id="presenterTitle" placeholder="Presenter Title">
+            </div>
+            <div class="form-group">
+              <label for="presenterContact">Presenter Contact</label>
+              <input type="text" class="form-control" id="presenterContact" placeholder="Presenter Contact">
+            </div>
+          </form>
+        </div>
+        <hr class="divider-alternate-2"/>
+        <div class="settings">
+          <p>Toggle settings for your presentation by clicking below.</p>
+          <ul class="list-group">
+            <li class="list-group-item"><a onclick="PresentationSettings.toggleShowNotes()"><i id="showNotes"></i>On Screen Notes</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lowlight" onclick="PresentationSettings.updateFromForm()" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+      <script>
+
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          slideNumber: true,
+          history: true,
+          keyboard: true,
+          overview: true,
+          center: false,
+          touch: true,
+          loop: false,
+          rtl: false,
+          fragments: true,
+          embedded: false,
+          help: true,
+          showNotes: false,
+          previewLinks: true,
+          transition: 'concave', 
+          backgroundTransition: 'fade',
+          margin: 0,
+          minScale: 0.2,
+          maxScale: 2.0,
+
+           
+
+          dependencies: [
+              
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+            
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+            
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+            
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+
+            
+            { src: 'plugin/notes/notes.js', async: true },
+
+            
+            { src: 'plugin/math/math.js', async: true },
+
+            { src: 'plugin/menu/menu.js', async: true }
+					],
+
+          menu: {
+            
+            
+            side: 'left',
+
+            
+            
+            numbers: false,
+
+            
+            
+            hideMissingTitles: false,
+
+            
+            
+            markers: true,
+
+            
+            
+            
+
+
+            
+            
+            themes: false,
+
+            
+            transitions: false,
+
+            
+            
+            openButton: true,
+
+            
+            
+            
+            openSlideNumber: false,
+
+            
+            
+            
+            keyboard: true
+          }
+
+
+        });
+
+        Reveal.addEventListener( 'ready', function( event ) {
+          PresentationSettings.updateFromCookie();
+        });
+
+      </script>
+    </body>
+</html>
