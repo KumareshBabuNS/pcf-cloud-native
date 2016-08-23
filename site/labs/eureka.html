@@ -8,7 +8,7 @@
   <head lang="en-us">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
-    <title>Service Discovery with Eureka - Cloud Native with Microservices</title>
+    <title>Spring Cloud Service Discovery - Cloud Native with Microservices</title>
 
 
     <meta name="description" content="CF Foundation Training - Cloud Native with Microservices">
@@ -103,7 +103,7 @@
 
     <div class="stretch">
       <div class="title" style="text-align: right">
-        Service Discovery with Eureka
+        Spring Cloud Service Discovery
       </div>
     </div>
 
@@ -111,7 +111,7 @@
 
 
     <div class="button button-github" role="button" aria-label="GitHub">
-      <a href="https://github.com/pivotal-enablement/cf-oss-training" title="@pivotal-enablement/cf-oss-training on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      <a href="https://github.com/patrickcrocker/pcf-cloud-native" title="@patrickcrocker/pcf-cloud-native on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
 
 
@@ -137,7 +137,7 @@
 <main class="main">
 	<div class="drawer">
 		<nav aria-label="Navigation">
-  <a href="https://github.com/pivotal-enablement/cf-oss-training" class="project">
+  <a href="https://github.com/patrickcrocker/pcf-cloud-native" class="project">
     <div class="banner">
 
         <div class="logo">
@@ -279,49 +279,38 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Service Discovery with Eureka </h1>
+			<h1>Spring Cloud Service Discovery</h1>
 
 
 
-<p>In this exercise, you will deploy a <a href="http://cloud.spring.io/spring-cloud-netflix/" target="_blank">Eureka</a> server.  You will also deploy a  new app <code>browser</code> that consumes data from our people service.</p>
+<p>In this exercise, you will create a <a href="http://docs.pivotal.io/spring-cloud-services/service-registry/" target="_blank">Service Discovery</a> service based on Eureka.  You will also deploy a  new app <code>browser</code> that consumes data from our people service.</p>
 
 <h2 id="about-the-app">About the App</h2>
 
-<p>The browser app uses Eureka to identify instances of our people service.  It uses the <a href="https://github.com/Netflix/ribbon" target="_blank">Ribbon</a> support built into <a href="http://cloud.spring.io/spring-cloud-netflix/" target="_blank">Spring Cloud Netflix</a> to provide client side load balancing.  The browser app also leverages <a href="https://github.com/Netflix/feign" target="_blank">Feign</a> support which makes writing HTTP clients in java simple.</p>
+<p>The browser app uses <a href="https://github.com/Netflix/eureka" target="_blank">Eureka</a> to identify instances of our people service.  It uses the <a href="https://github.com/Netflix/ribbon" target="_blank">Ribbon</a> support built into <a href="http://cloud.spring.io/spring-cloud-netflix/" target="_blank">Spring Cloud Netflix</a> to provide client side load balancing.  The browser app also leverages <a href="https://github.com/Netflix/feign" target="_blank">Feign</a> support which makes writing HTTP clients in java simple.</p>
 
-<blockquote>
-<p>NOTE: PWS trial accounts are limited to 2GB, not enough capacity to scale our people-service instances.</p>
-</blockquote>
+<h2 id="deploying-service-registry">Creating Service Registry</h2>
 
-<h2 id="deploying-eureka">Deploying Eureka</h2>
-
-<p>First you need to deploy the Eureka server.  A prebuilt jar is provided here <a href="../resources/eureka.jar" target="_blank">/public/cf-oss-training/cloud-native/site/resources/eureka.jar</a> or you can download and build the source from github <a href="https://github.com/spgreenberg/eureka" target="_blank">github.com/spgreenberg/eureka</a>.</p>
+<p>First you need to create the Service Registry service.
 
 <ul>
-<li>Push the Eureka server to cloud foundry</li>
+<li>Use <code>cf marketplace</code> to view the available services and plans.<br /></li>
+<li>Use <code>cf create-service</code> to create a Service Registry service instance <code>p-service-registry</code> and select the plan <code>standard</code>.</li>
 </ul>
-
-<pre><code class="language-sh">cf push eureka -p &lt;path-to-jar&gt; -m 512M -i 1 --random-route -b java_buildpack
-</code></pre>
 
 <h3 id="checking-your-work">Checking Your Work</h3>
 
-<p>You should see the eureka app running: <code>cf apps</code></p>
+<p>You should be able to see your service instance:</p>
 
-<h3 id="accessing-the-eureka-console">Accessing the Eureka Console</h3>
+<pre><code class="language-sh">cf services
+...
 
-<p>Eureka has a built in web UI that shows information on the services registered. You can access it by going to the URL in your browser.  At this point, you won&rsquo;t see any services registered.</p>
-
-<blockquote>
-<p>NOTE: You can ignore the scary sounding error messages displayed in the UI.  This is a single instance deployment of Eureka, not meant for production.</p>
-</blockquote>
-
-<h3 id="creating-a-user-provided-service-for-eureka">Creating a User Provided Service for Eureka</h3>
-
-<p>We will need to tell our applications where our Eureka server is.  There are many ways to do this, but for the purpose of this class, we will create a user provided service instance that can be bound to any client or service apps.</p>
-
-<pre><code class="language-sh">cf cups eureka-service -p '{&quot;uri&quot;:&quot;http://&lt;YOUR_EUREKA&gt;&quot;}'
+name               service              plan        bound apps   last operation
+people-mysql       p-mysql              100mb-dev   people       update succeeded
+service-registry   p-service-registry   standard                 create in progress
 </code></pre>
+
+<p>The Service Registry can take up to 70 seconds to start. Use <code>cf service service-registry</code> to check operation status.</p>
 
 <h2 id="registering-the-people-service">Registering the People Service</h2>
 
@@ -335,7 +324,7 @@
 </code></pre>
 
 <ul>
-<li><p>Use <code>cf bind-service</code> to bind the <code>eureka-service</code> you created above to your people service app.</p></li>
+<li><p>Use <code>cf bind-service</code> to bind the <code>service-registry</code> you created above to your people service app.</p></li>
 
 <li><p>Use <code>cf restage</code> so the people service can pick up the changes.</p></li>
 </ul>
@@ -356,9 +345,9 @@ SPRING_PROFILES_ACTIVE: cloud,eureka
 <pre><code class="language-sh">cf services
 ...
 
-name             service         plan        bound apps   last operation   
-eureka-service   user-provided               people
-people-mysql     p-mysql         100mb-dev   people       create succeeded
+name               service              plan        bound apps   last operation
+people-mysql       p-mysql              100mb-dev   people       create succeeded
+service-registry   p-service-registry   standard    people       create succeeded
 </code></pre>
 
 <h3 id="viewing-your-service-in-eureka">Viewing Your Service in Eureka</h3>
@@ -368,9 +357,9 @@ people-mysql     p-mysql         100mb-dev   people       create succeeded
 <h2 id="pushing-the-browser-app">Pushing the Browser App</h2>
 
 <ul>
-<li><p>Now, push the browser app.  The jar file is located here <a href="../resources/browser.jar" target="_blank">/public/cf-oss-training/cloud-native/site/resources/browser.jar</a> or you can download and build the project yourself: <a href="https://github.com/spgreenberg/browser" target="_blank">github.com/spgreenberg/browser</a>.</p></li>
+<li><p>Now, push the browser app.  The jar file is located here <a href="../resources/browser.jar" target="_blank">browser.jar</a> or you can download and build the project yourself: <a href="https://github.com/patrickcrocker/browser" target="_blank">github.com/patrickcrocker/browser</a>.</p></li>
 
-<li><p>Bind the Eureka service and restart the browser app.</p></li>
+<li><p>Bind the Eureka Service Registry and restart the browser app.</p></li>
 </ul>
 
 <h3 id="checking-your-work-2">Checking Your Work</h3>
@@ -402,7 +391,7 @@ people-mysql     p-mysql         100mb-dev   people       create succeeded
 
 <h3 id="what-is-happening">What is happening?</h3>
 
-<p>When successful, the browser app is using Eureka to locate the people service instances, then using Ribbon to load balance requests to those instances (b/c of quota limits, we only have 1 instance).  Should we add/remove instances of the people service, or should that service move, updates will happen automatically.</p>
+<p>When successful, the browser app is using Eureka to locate the people service instances, then using Ribbon to load balance requests to those instances.  Should we add/remove instances of the people service, or should that service move, updates will happen automatically.</p>
 
 <p>Congratulations!  You have successfully used service discovery to consume a microservice.</p>
 
