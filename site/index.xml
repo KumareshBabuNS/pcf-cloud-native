@@ -8,12 +8,12 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Apr 2016 19:21:15 -0600</lastBuildDate>
     <atom:link href="/public/cf-oss-training/cloud-native/site/index.xml" rel="self" type="application/rss+xml" />
-    
+
     <item>
       <title>Agenda</title>
       <link>/public/cf-oss-training/cloud-native/site/agenda/</link>
       <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/agenda/</guid>
       <description>
 
@@ -50,12 +50,12 @@
 &lt;h2 id=&#34;7-recap-retro&#34;&gt;7. Recap &amp;amp; Retro&lt;/h2&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Logs</title>
       <link>/public/cf-oss-training/cloud-native/site/labs/logs/</link>
       <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/labs/logs/</guid>
       <description>
 
@@ -102,12 +102,12 @@
 &lt;/ul&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Notes</title>
       <link>/public/cf-oss-training/cloud-native/site/notes/</link>
       <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/notes/</guid>
       <description>
 
@@ -122,12 +122,12 @@
 &lt;/ul&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Resources</title>
       <link>/public/cf-oss-training/cloud-native/site/resources/</link>
       <pubDate>Tue, 19 Apr 2016 19:21:15 -0600</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/resources/</guid>
       <description>
 
@@ -152,12 +152,12 @@
 &lt;/ul&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Microservices on Cloud Foundry: Going Cloud Native</title>
       <link>/public/cf-oss-training/cloud-native/site/</link>
       <pubDate>Tue, 19 Apr 2016 18:59:04 -0600</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;/public/cf-oss-training/cloud-native/site/public/cf-oss-training/cloud-native/student-zip/cf-oss-cloud-native.zip&#34; target=&#34;_blank&#34;&gt;&lt;i class=&#34;fa fa-download&#34;&gt; &lt;/i&gt; Download&lt;/a&gt;&lt;/p&gt;
 
@@ -166,12 +166,12 @@
 &lt;p&gt;This training is targeted at developers with little hands-on Cloud Foundry experience and those who have an interest in deploying innovative, microservice-based systems into the cloud.&lt;/p&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Prerequisites</title>
       <link>/public/cf-oss-training/cloud-native/site/prereqs/</link>
       <pubDate>Tue, 19 Apr 2016 18:59:04 -0600</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/prereqs/</guid>
       <description>
 
@@ -199,12 +199,12 @@
 &lt;/ul&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Binding and Environment Variables</title>
       <link>/public/cf-oss-training/cloud-native/site/labs/bind/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/labs/bind/</guid>
       <description>
 
@@ -216,7 +216,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;Use &lt;code&gt;cf marketplace&lt;/code&gt; to view the available services and plans.&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;cf create-service&lt;/code&gt; to create a MySQL service instance &lt;code&gt;cleardb&lt;/code&gt; and select the &lt;em&gt;free&lt;/em&gt; plan &lt;code&gt;spark&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;cf create-service&lt;/code&gt; to create a MySQL service instance &lt;code&gt;p-mysql&lt;/code&gt; and select the &lt;em&gt;free&lt;/em&gt; plan &lt;code&gt;100mb-dev&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;checking-your-work&#34;&gt;Checking Your Work&lt;/h3&gt;
@@ -226,8 +226,8 @@
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
 ...
 
-name           service   plan    bound apps   last operation   
-people-mysql   cleardb   spark                create succeeded   
+name           service   plan        bound apps   last operation
+people-mysql   p-mysql   100mb-dev                create succeeded   
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;binding-to-your-app&#34;&gt;Binding to Your App&lt;/h2&gt;
@@ -246,15 +246,15 @@ people-mysql   cleardb   spark                create succeeded
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
 
 ...
-name         service   plan    bound apps   last operation   
-people-mysql cleardb   spark   people       create succeeded
+name         service   plan    bound apps   last operation
+people-mysql p-mysql   100mb-dev   people       create succeeded
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;testing-statelessness&#34;&gt;Testing Statelessness&lt;/h2&gt;
 
 &lt;p&gt;At this point, you should be able to put data into your service that lands in the external mysql service.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl -X POST -H &amp;quot;Content-Type:application/json&amp;quot; -d &#39;{&amp;quot;firstName&amp;quot;:&amp;quot;Steve&amp;quot;, &amp;quot;lastName&amp;quot;:&amp;quot;Greenberg&amp;quot;, &amp;quot;company&amp;quot;:&amp;quot;Pivotal&amp;quot;}&#39; http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl -X POST -H &amp;quot;Content-Type:application/json&amp;quot; -d &#39;{&amp;quot;firstName&amp;quot;:&amp;quot;Steve&amp;quot;, &amp;quot;lastName&amp;quot;:&amp;quot;Greenberg&amp;quot;, &amp;quot;company&amp;quot;:&amp;quot;Pivotal&amp;quot;}&#39; http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -262,7 +262,7 @@ people-mysql cleardb   spark   people       create succeeded
 &lt;li&gt;You should still see the data:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people
 ...
 
 {
@@ -273,23 +273,23 @@ people-mysql cleardb   spark   people       create succeeded
       &amp;quot;company&amp;quot; : &amp;quot;Pivotal&amp;quot;,
       &amp;quot;_links&amp;quot; : {
         &amp;quot;self&amp;quot; : {
-          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/2&amp;quot;
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/2&amp;quot;
         },
         &amp;quot;person&amp;quot; : {
-          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/2&amp;quot;
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/2&amp;quot;
         }
       }
     } ]
   },
   &amp;quot;_links&amp;quot; : {
     &amp;quot;self&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people&amp;quot;
     },
     &amp;quot;profile&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/profile/people&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/profile/people&amp;quot;
     },
     &amp;quot;search&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/search&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/search&amp;quot;
     }
   },
   &amp;quot;page&amp;quot; : {
@@ -340,8 +340,8 @@ people-mysql cleardb   spark   people       create succeeded
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf app people
 ...
 
-0   running   2016-05-17 09:53:40 AM   0.1%     376.8M of 750M   153.7M of 1G      
-1   running   2016-05-17 10:01:35 AM   0.0%     232.1M of 750M   153.7M of 1G      
+0   running   2016-05-17 09:53:40 AM   0.1%     376.8M of 750M   153.7M of 1G
+1   running   2016-05-17 10:01:35 AM   0.0%     232.1M of 750M   153.7M of 1G
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;scale-down&#34;&gt;Scale Down&lt;/h2&gt;
@@ -362,12 +362,12 @@ people-mysql cleardb   spark   people       create succeeded
 &lt;/ul&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Circuit Breakers with Hystrix</title>
       <link>/public/cf-oss-training/cloud-native/site/labs/hystrix/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/labs/hystrix/</guid>
       <description>
 
@@ -444,12 +444,12 @@ Properties
 &lt;p&gt;Now, start your people app.  Access the browser a few times again until service is restored.&lt;/p&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Pushing a data service</title>
       <link>/public/cf-oss-training/cloud-native/site/labs/push/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/labs/push/</guid>
       <description>
 
@@ -486,8 +486,8 @@ Properties
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf apps
 ...
 
-name     requested state   instances   memory   disk   urls   
-people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io   
+name     requested state   instances   memory   disk   urls
+people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The app also has an endpoint called &lt;code&gt;/people&lt;/code&gt;.  You should also be able to curl it:&lt;/p&gt;
@@ -496,7 +496,7 @@ people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROU
 &lt;p&gt;On Windows, if you don&amp;rsquo;t have curl you can get it from here: &lt;a href=&#34;https://curl.haxx.se/download.html&#34; target=&#34;_blank&#34;&gt;curl.haxx.se/download.html&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people
 ...
 
 {
@@ -505,13 +505,13 @@ people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROU
   },
   &amp;quot;_links&amp;quot; : {
     &amp;quot;self&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people&amp;quot;
     },
     &amp;quot;profile&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/profile/people&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/profile/people&amp;quot;
     },
     &amp;quot;search&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/search&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/search&amp;quot;
     }
   },
   &amp;quot;page&amp;quot; : {
@@ -527,12 +527,12 @@ people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROU
 
 &lt;p&gt;You can add data by issuing a curl request to POST to the people endpoint.  Be sure to replace your information and URL below:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl -X POST -H &amp;quot;Content-Type:application/json&amp;quot; -d &#39;{&amp;quot;firstName&amp;quot;:&amp;quot;Steve&amp;quot;, &amp;quot;lastName&amp;quot;:&amp;quot;Greenberg&amp;quot;, &amp;quot;company&amp;quot;:&amp;quot;Pivotal&amp;quot;}&#39; http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl -X POST -H &amp;quot;Content-Type:application/json&amp;quot; -d &#39;{&amp;quot;firstName&amp;quot;:&amp;quot;Steve&amp;quot;, &amp;quot;lastName&amp;quot;:&amp;quot;Greenberg&amp;quot;, &amp;quot;company&amp;quot;:&amp;quot;Pivotal&amp;quot;}&#39; http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now, you should see the data:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people
 ...
 
 {
@@ -543,23 +543,23 @@ people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROU
       &amp;quot;company&amp;quot; : &amp;quot;Pivotal&amp;quot;,
       &amp;quot;_links&amp;quot; : {
         &amp;quot;self&amp;quot; : {
-          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/1&amp;quot;
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/1&amp;quot;
         },
         &amp;quot;person&amp;quot; : {
-          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/1&amp;quot;
+          &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/1&amp;quot;
         }
       }
     } ]
   },
   &amp;quot;_links&amp;quot; : {
     &amp;quot;self&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people&amp;quot;
     },
     &amp;quot;profile&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/profile/people&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/profile/people&amp;quot;
     },
     &amp;quot;search&amp;quot; : {
-      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people/search&amp;quot;
+      &amp;quot;href&amp;quot; : &amp;quot;http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people/search&amp;quot;
     }
   },
   &amp;quot;page&amp;quot; : {
@@ -578,7 +578,7 @@ people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROU
 &lt;li&gt;Curl your app again:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.cfapps.io/people
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;curl http://people-&amp;lt;RANDOM_ROUTE&amp;gt;.apps.anvil.pcfdemo.com/people
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What happened?  Why?  Not very durable, right?  We will correct this in the next exercise.&lt;/p&gt;
@@ -590,12 +590,12 @@ people   started           1/1         750M     1G     people-&amp;lt;RANDOM_ROU
 &lt;/ul&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Service Discovery with Eureka</title>
       <link>/public/cf-oss-training/cloud-native/site/labs/eureka/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/labs/eureka/</guid>
       <description>
 
@@ -672,9 +672,9 @@ SPRING_PROFILES_ACTIVE: cloud,eureka
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cf services
 ...
 
-name             service         plan    bound apps   last operation   
-eureka-service   user-provided           people          
-people-mysql     cleardb         spark   people       create succeeded  
+name             service         plan    bound apps   last operation
+eureka-service   user-provided           people
+people-mysql     p-mysql         100mb-dev   people       create succeeded
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;viewing-your-service-in-eureka&#34;&gt;Viewing Your Service in Eureka&lt;/h3&gt;
@@ -723,12 +723,12 @@ people-mysql     cleardb         spark   people       create succeeded
 &lt;p&gt;Congratulations!  You have successfully used service discovery to consume a microservice.&lt;/p&gt;
 </description>
     </item>
-    
+
     <item>
       <title>Setup</title>
       <link>/public/cf-oss-training/cloud-native/site/labs/setup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+
       <guid>/public/cf-oss-training/cloud-native/site/labs/setup/</guid>
       <description>
 
@@ -768,15 +768,15 @@ people-mysql     cleardb         spark   people       create succeeded
 
 &lt;p&gt;You should see output similar to:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;API endpoint:   https://api.run.pivotal.io (API version: 2.56.0)   
-User:           sgreenberg@pivotal.io   
-Org:            Pivotal-Enablement   
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;API endpoint:   https://api.run.pivotal.io (API version: 2.56.0)
+User:           sgreenberg@pivotal.io
+Org:            Pivotal-Enablement
 Space:          development
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Alternatively, you can check where you are logged in and targeted at anytime using &lt;code&gt;cf target&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
-    
+
   </channel>
 </rss>

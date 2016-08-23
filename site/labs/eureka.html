@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-  
-  
-  
-  
-   <html class="no-js"> 
+
+
+
+
+   <html class="no-js">
 
   <head lang="en-us">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <title>Service Discovery with Eureka - Cloud Native with Microservices</title>
 
-    
+
     <meta name="description" content="CF Foundation Training - Cloud Native with Microservices">
-    
+
     <link rel="canonical" href="../index.html">
-    
+
     <meta name="author" content="sgreenberg@pivotal.io">
-    
+
 
     <meta property="og:url" content="/public/cf-oss-training/cloud-native/site/">
     <meta property="og:title" content="Cloud Native with Microservices">
-    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/cf-rabbit.png">
+    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/pcf-cloud-icon.png">
     <meta name="apple-mobile-web-app-title" content="Cloud Native with Microservices">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -49,9 +49,9 @@
     <link rel="stylesheet" href="../stylesheets/palettes.css">
     <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
 
-    
-    
-    
+
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
     <style>
       body, input {
@@ -62,12 +62,12 @@
       }
     </style>
 
-    
+
     <link rel="stylesheet" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/css/style.css">
-    
+
     <script src="../javascripts/modernizr.js"></script>
 
-    
+
 
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -76,8 +76,8 @@
 
 
 
-	
-	
+
+
 
 
 <div class="backdrop">
@@ -96,26 +96,26 @@
         <span></span>
       </label>
     </div>
-    
+
       <div class="button">
-        <img src="../img/cf-white.png" style="height: 40px; margin-top: 8px; vertical-align: middle"/>
+        <img src="../img/pcf-logo.png" style="height: 50px; vertical-align: middle"/>
       </div>
-    
+
     <div class="stretch">
       <div class="title" style="text-align: right">
         Service Discovery with Eureka
       </div>
     </div>
 
-    
 
-    
+
+
     <div class="button button-github" role="button" aria-label="GitHub">
       <a href="https://github.com/pivotal-enablement/cf-oss-training" title="@pivotal-enablement/cf-oss-training on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
-    
 
-    
+
+
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
@@ -139,11 +139,11 @@
 		<nav aria-label="Navigation">
   <a href="https://github.com/pivotal-enablement/cf-oss-training" class="project">
     <div class="banner">
-      
+
         <div class="logo">
-          <img src="../img/cf-rabbit.png">
+          <img src="../img/pcf-cloud-icon.png">
         </div>
-      
+
       <div class="name">
         <strong>Cloud Native with Microservices <span class="version">v1.0.0</span></strong>
 
@@ -155,120 +155,120 @@
 
   <div class="scrollable">
     <div class="wrapper">
-      
-      
-      
+
+
+
 
       <div class="toc">
-        
+
         <ul>
-          
+
 
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Overview" href="../index.html">
-	
+
 	Overview
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Prerequisites" href="../prereqs/index.html">
-	
+
 	Prerequisites
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Agenda" href="../agenda/index.html">
-	
+
 	Agenda
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Resources" href="../resources/index.html">
-	
+
 	Resources
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Notes" href="../notes/index.html">
-	
+
 	Notes
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="License" href="http://www.apache.org/licenses/LICENSE-2.0">
-	
+
 	License
 </a>
 
-  
-  
+
+
 </li>
 
         </ul>
-        
+
 
       </div>
     </div>
@@ -281,7 +281,7 @@
 		<div class="wrapper">
 			<h1>Service Discovery with Eureka </h1>
 
-			
+
 
 <p>In this exercise, you will deploy a <a href="http://cloud.spring.io/spring-cloud-netflix/" target="_blank">Eureka</a> server.  You will also deploy a  new app <code>browser</code> that consumes data from our people service.</p>
 
@@ -356,9 +356,9 @@ SPRING_PROFILES_ACTIVE: cloud,eureka
 <pre><code class="language-sh">cf services
 ...
 
-name             service         plan    bound apps   last operation   
-eureka-service   user-provided           people          
-people-mysql     cleardb         spark   people       create succeeded  
+name             service         plan        bound apps   last operation   
+eureka-service   user-provided               people
+people-mysql     p-mysql         100mb-dev   people       create succeeded
 </code></pre>
 
 <h3 id="viewing-your-service-in-eureka">Viewing Your Service in Eureka</h3>
@@ -409,9 +409,9 @@ people-mysql     cleardb         spark   people       create succeeded
 
 
 			<footer class="footer" style="text-align: right; color: #ccc">
-				
+
 				&copy; 2016 Copyright Pivotal Software, Inc.  All Rights Reserved.
-				
+
 			</footer>
 		</div>
 	</article>
@@ -427,14 +427,14 @@ people-mysql     cleardb         spark   people       create succeeded
 </main>
 
     <script>
-    
+
       var base_url = '\/public\/cf-oss-training\/cloud-native\/site\/';
       var repo_id  = 'pivotal-enablement\/cf-oss-training';
-    
+
     </script>
 
     <script src="../javascripts/application.js"></script>
-    
+
 
     <script>
       /* Add headers to scrollspy */
@@ -450,14 +450,14 @@ people-mysql     cleardb         spark   people       create succeeded
           a.setAttribute("href", "#" + headers[i].id);
           a.setAttribute("title", headers[i].innerHTML);
           a.innerHTML = headers[i].innerHTML;
-          
+
           li.appendChild(a)
           scrollspy.appendChild(li);
         }
       } else {
         scrollspy.parentElement.removeChild(scrollspy)
       }
-      
+
 
       /* Add permanent link next to the headers */
       var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -472,7 +472,7 @@ people-mysql     cleardb         spark   people       create succeeded
       }
     </script>
 
-    
+
 
     <script src="https://gohugo.io/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>

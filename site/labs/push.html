@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-  
-  
-  
-  
-   <html class="no-js"> 
+
+
+
+
+   <html class="no-js">
 
   <head lang="en-us">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <title>Pushing a data service - Cloud Native with Microservices</title>
 
-    
+
     <meta name="description" content="CF Foundation Training - Cloud Native with Microservices">
-    
+
     <link rel="canonical" href="../index.html">
-    
+
     <meta name="author" content="sgreenberg@pivotal.io">
-    
+
 
     <meta property="og:url" content="/public/cf-oss-training/cloud-native/site/">
     <meta property="og:title" content="Cloud Native with Microservices">
-    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/cf-rabbit.png">
+    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/pcf-cloud-icon.png">
     <meta name="apple-mobile-web-app-title" content="Cloud Native with Microservices">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -49,9 +49,9 @@
     <link rel="stylesheet" href="../stylesheets/palettes.css">
     <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
 
-    
-    
-    
+
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
     <style>
       body, input {
@@ -62,12 +62,12 @@
       }
     </style>
 
-    
+
     <link rel="stylesheet" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/css/style.css">
-    
+
     <script src="../javascripts/modernizr.js"></script>
 
-    
+
 
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -76,8 +76,8 @@
 
 
 
-	
-	
+
+
 
 
 <div class="backdrop">
@@ -96,26 +96,26 @@
         <span></span>
       </label>
     </div>
-    
+
       <div class="button">
-        <img src="../img/cf-white.png" style="height: 40px; margin-top: 8px; vertical-align: middle"/>
+        <img src="../img/pcf-logo.png" style="height: 50px; vertical-align: middle"/>
       </div>
-    
+
     <div class="stretch">
       <div class="title" style="text-align: right">
         Pushing a data service
       </div>
     </div>
 
-    
 
-    
+
+
     <div class="button button-github" role="button" aria-label="GitHub">
       <a href="https://github.com/pivotal-enablement/cf-oss-training" title="@pivotal-enablement/cf-oss-training on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
-    
 
-    
+
+
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
@@ -139,11 +139,11 @@
 		<nav aria-label="Navigation">
   <a href="https://github.com/pivotal-enablement/cf-oss-training" class="project">
     <div class="banner">
-      
+
         <div class="logo">
-          <img src="../img/cf-rabbit.png">
+          <img src="../img/pcf-cloud-icon.png">
         </div>
-      
+
       <div class="name">
         <strong>Cloud Native with Microservices <span class="version">v1.0.0</span></strong>
 
@@ -155,120 +155,120 @@
 
   <div class="scrollable">
     <div class="wrapper">
-      
-      
-      
+
+
+
 
       <div class="toc">
-        
+
         <ul>
-          
+
 
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Overview" href="../index.html">
-	
+
 	Overview
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Prerequisites" href="../prereqs/index.html">
-	
+
 	Prerequisites
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Agenda" href="../agenda/index.html">
-	
+
 	Agenda
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Resources" href="../resources/index.html">
-	
+
 	Resources
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Notes" href="../notes/index.html">
-	
+
 	Notes
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="License" href="http://www.apache.org/licenses/LICENSE-2.0">
-	
+
 	License
 </a>
 
-  
-  
+
+
 </li>
 
         </ul>
-        
+
 
       </div>
     </div>
@@ -281,7 +281,7 @@
 		<div class="wrapper">
 			<h1>Pushing a data service </h1>
 
-			
+
 
 <p>In this exercise, you will push a restful data microservice.</p>
 
@@ -293,7 +293,7 @@
 
 <p>The app is a very simple Spring Data Rest application. You can download the jar file here: <a href="../resources/people.jar" target="_blank">/public/cf-oss-training/cloud-native/site/resources/people.jar</a>.</p>
 
-<p>If you are comfortable with git and gradle, you can also clone the source here <a href="https://github.com/spgreenberg/people" target="_blank">github.com/spgreenberg/people</a> and build it yourself.</p>
+<p>If you are comfortable with git and gradle, you can also clone the source here <a href="https://github.com/patrickcrocker/people" target="_blank">github.com/patrickcrocker/people</a> and build it yourself.</p>
 
 <h3 id="push">Push</h3>
 
@@ -316,8 +316,8 @@
 <pre><code class="language-sh">cf apps
 ...
 
-name     requested state   instances   memory   disk   urls   
-people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&gt;.cfapps.io   
+name     requested state   instances   memory   disk   urls
+people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com
 </code></pre>
 
 <p>The app also has an endpoint called <code>/people</code>.  You should also be able to curl it:</p>
@@ -326,7 +326,7 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
 <p>On Windows, if you don&rsquo;t have curl you can get it from here: <a href="https://curl.haxx.se/download.html" target="_blank">curl.haxx.se/download.html</a></p>
 </blockquote>
 
-<pre><code class="language-sh">curl people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people
+<pre><code class="language-sh">curl people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 ...
 
 {
@@ -335,13 +335,13 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
   },
   &quot;_links&quot; : {
     &quot;self&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people&quot;
     },
     &quot;profile&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/profile/people&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/profile/people&quot;
     },
     &quot;search&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/search&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/search&quot;
     }
   },
   &quot;page&quot; : {
@@ -357,12 +357,12 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
 
 <p>You can add data by issuing a curl request to POST to the people endpoint.  Be sure to replace your information and URL below:</p>
 
-<pre><code class="language-sh">curl -X POST -H &quot;Content-Type:application/json&quot; -d '{&quot;firstName&quot;:&quot;Steve&quot;, &quot;lastName&quot;:&quot;Greenberg&quot;, &quot;company&quot;:&quot;Pivotal&quot;}' http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people
+<pre><code class="language-sh">curl -X POST -H &quot;Content-Type:application/json&quot; -d '{&quot;firstName&quot;:&quot;Steve&quot;, &quot;lastName&quot;:&quot;Greenberg&quot;, &quot;company&quot;:&quot;Pivotal&quot;}' http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 </code></pre>
 
 <p>Now, you should see the data:</p>
 
-<pre><code class="language-sh">curl http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people
+<pre><code class="language-sh">curl http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 ...
 
 {
@@ -373,23 +373,23 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
       &quot;company&quot; : &quot;Pivotal&quot;,
       &quot;_links&quot; : {
         &quot;self&quot; : {
-          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/1&quot;
+          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/1&quot;
         },
         &quot;person&quot; : {
-          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/1&quot;
+          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/1&quot;
         }
       }
     } ]
   },
   &quot;_links&quot; : {
     &quot;self&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people&quot;
     },
     &quot;profile&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/profile/people&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/profile/people&quot;
     },
     &quot;search&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/search&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/search&quot;
     }
   },
   &quot;page&quot; : {
@@ -408,7 +408,7 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
 <li>Curl your app again:</li>
 </ul>
 
-<pre><code class="language-sh">curl http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people
+<pre><code class="language-sh">curl http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 </code></pre>
 
 <p>What happened?  Why?  Not very durable, right?  We will correct this in the next exercise.</p>
@@ -422,9 +422,9 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
 
 
 			<footer class="footer" style="text-align: right; color: #ccc">
-				
+
 				&copy; 2016 Copyright Pivotal Software, Inc.  All Rights Reserved.
-				
+
 			</footer>
 		</div>
 	</article>
@@ -440,14 +440,14 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
 </main>
 
     <script>
-    
+
       var base_url = '\/public\/cf-oss-training\/cloud-native\/site\/';
       var repo_id  = 'pivotal-enablement\/cf-oss-training';
-    
+
     </script>
 
     <script src="../javascripts/application.js"></script>
-    
+
 
     <script>
       /* Add headers to scrollspy */
@@ -463,14 +463,14 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
           a.setAttribute("href", "#" + headers[i].id);
           a.setAttribute("title", headers[i].innerHTML);
           a.innerHTML = headers[i].innerHTML;
-          
+
           li.appendChild(a)
           scrollspy.appendChild(li);
         }
       } else {
         scrollspy.parentElement.removeChild(scrollspy)
       }
-      
+
 
       /* Add permanent link next to the headers */
       var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -485,7 +485,7 @@ people   started           1/1         750M     1G     people-&lt;RANDOM_ROUTE&g
       }
     </script>
 
-    
+
 
     <script src="https://gohugo.io/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>

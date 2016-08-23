@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-  
-  
-  
-  
-   <html class="no-js"> 
+
+
+
+
+   <html class="no-js">
 
   <head lang="en-us">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <title>Binding and Environment Variables - Cloud Native with Microservices</title>
 
-    
+
     <meta name="description" content="CF Foundation Training - Cloud Native with Microservices">
-    
+
     <link rel="canonical" href="../index.html">
-    
+
     <meta name="author" content="sgreenberg@pivotal.io">
-    
+
 
     <meta property="og:url" content="/public/cf-oss-training/cloud-native/site/">
     <meta property="og:title" content="Cloud Native with Microservices">
-    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/cf-rabbit.png">
+    <meta property="og:image" content="/public/cf-oss-training/cloud-native/site/img/pcf-cloud-icon.png">
     <meta name="apple-mobile-web-app-title" content="Cloud Native with Microservices">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -49,9 +49,9 @@
     <link rel="stylesheet" href="../stylesheets/palettes.css">
     <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
 
-    
-    
-    
+
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
     <style>
       body, input {
@@ -62,12 +62,12 @@
       }
     </style>
 
-    
+
     <link rel="stylesheet" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/css/style.css">
-    
+
     <script src="../javascripts/modernizr.js"></script>
 
-    
+
 
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -76,8 +76,8 @@
 
 
 
-	
-	
+
+
 
 
 <div class="backdrop">
@@ -96,26 +96,26 @@
         <span></span>
       </label>
     </div>
-    
+
       <div class="button">
-        <img src="../img/cf-white.png" style="height: 40px; margin-top: 8px; vertical-align: middle"/>
+        <img src="../img/pcf-logo.png" style="height: 50px; vertical-align: middle"/>
       </div>
-    
+
     <div class="stretch">
       <div class="title" style="text-align: right">
         Binding and Environment Variables
       </div>
     </div>
 
-    
 
-    
+
+
     <div class="button button-github" role="button" aria-label="GitHub">
       <a href="https://github.com/pivotal-enablement/cf-oss-training" title="@pivotal-enablement/cf-oss-training on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
-    
 
-    
+
+
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
@@ -139,11 +139,11 @@
 		<nav aria-label="Navigation">
   <a href="https://github.com/pivotal-enablement/cf-oss-training" class="project">
     <div class="banner">
-      
+
         <div class="logo">
-          <img src="../img/cf-rabbit.png">
+          <img src="../img/pcf-cloud-icon.png">
         </div>
-      
+
       <div class="name">
         <strong>Cloud Native with Microservices <span class="version">v1.0.0</span></strong>
 
@@ -155,120 +155,120 @@
 
   <div class="scrollable">
     <div class="wrapper">
-      
-      
-      
+
+
+
 
       <div class="toc">
-        
+
         <ul>
-          
+
 
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Overview" href="../index.html">
-	
+
 	Overview
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Prerequisites" href="../prereqs/index.html">
-	
+
 	Prerequisites
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Agenda" href="../agenda/index.html">
-	
+
 	Agenda
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Resources" href="../resources/index.html">
-	
+
 	Resources
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Notes" href="../notes/index.html">
-	
+
 	Notes
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="License" href="http://www.apache.org/licenses/LICENSE-2.0">
-	
+
 	License
 </a>
 
-  
-  
+
+
 </li>
 
         </ul>
-        
+
 
       </div>
     </div>
@@ -281,7 +281,7 @@
 		<div class="wrapper">
 			<h1>Binding and Environment Variables </h1>
 
-			
+
 
 <p>In the last section, we lost all our data when we restarted our app.  In this section, we will fix that.</p>
 
@@ -291,7 +291,7 @@
 
 <ul>
 <li>Use <code>cf marketplace</code> to view the available services and plans.<br /></li>
-<li>Use <code>cf create-service</code> to create a MySQL service instance <code>cleardb</code> and select the <em>free</em> plan <code>spark</code>.</li>
+<li>Use <code>cf create-service</code> to create a MySQL service instance <code>p-mysql</code> and select the plan <code>100mb-dev</code>.</li>
 </ul>
 
 <h3 id="checking-your-work">Checking Your Work</h3>
@@ -301,8 +301,8 @@
 <pre><code class="language-sh">cf services
 ...
 
-name           service   plan    bound apps   last operation   
-people-mysql   cleardb   spark                create succeeded   
+name           service   plan        bound apps   last operation
+people-mysql   p-mysql   100mb-dev                create succeeded
 </code></pre>
 
 <h2 id="binding-to-your-app">Binding to Your App</h2>
@@ -321,15 +321,15 @@ people-mysql   cleardb   spark                create succeeded
 <pre><code class="language-sh">cf services
 
 ...
-name         service   plan    bound apps   last operation   
-people-mysql cleardb   spark   people       create succeeded
+name         service   plan        bound apps   last operation
+people-mysql p-mysql   100mb-dev   people       create succeeded
 </code></pre>
 
 <h2 id="testing-statelessness">Testing Statelessness</h2>
 
 <p>At this point, you should be able to put data into your service that lands in the external mysql service.</p>
 
-<pre><code class="language-sh">curl -X POST -H &quot;Content-Type:application/json&quot; -d '{&quot;firstName&quot;:&quot;Steve&quot;, &quot;lastName&quot;:&quot;Greenberg&quot;, &quot;company&quot;:&quot;Pivotal&quot;}' http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people
+<pre><code class="language-sh">curl -X POST -H &quot;Content-Type:application/json&quot; -d '{&quot;firstName&quot;:&quot;Steve&quot;, &quot;lastName&quot;:&quot;Greenberg&quot;, &quot;company&quot;:&quot;Pivotal&quot;}' http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 </code></pre>
 
 <ul>
@@ -337,7 +337,7 @@ people-mysql cleardb   spark   people       create succeeded
 <li>You should still see the data:</li>
 </ul>
 
-<pre><code class="language-sh">curl http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people
+<pre><code class="language-sh">curl http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people
 ...
 
 {
@@ -348,23 +348,23 @@ people-mysql cleardb   spark   people       create succeeded
       &quot;company&quot; : &quot;Pivotal&quot;,
       &quot;_links&quot; : {
         &quot;self&quot; : {
-          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/2&quot;
+          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/2&quot;
         },
         &quot;person&quot; : {
-          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/2&quot;
+          &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/2&quot;
         }
       }
     } ]
   },
   &quot;_links&quot; : {
     &quot;self&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people&quot;
     },
     &quot;profile&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/profile/people&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/profile/people&quot;
     },
     &quot;search&quot; : {
-      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.cfapps.io/people/search&quot;
+      &quot;href&quot; : &quot;http://people-&lt;RANDOM_ROUTE&gt;.apps.anvil.pcfdemo.com/people/search&quot;
     }
   },
   &quot;page&quot; : {
@@ -415,8 +415,8 @@ people-mysql cleardb   spark   people       create succeeded
 <pre><code class="language-sh">cf app people
 ...
 
-0   running   2016-05-17 09:53:40 AM   0.1%     376.8M of 750M   153.7M of 1G      
-1   running   2016-05-17 10:01:35 AM   0.0%     232.1M of 750M   153.7M of 1G      
+0   running   2016-05-17 09:53:40 AM   0.1%     376.8M of 750M   153.7M of 1G
+1   running   2016-05-17 10:01:35 AM   0.0%     232.1M of 750M   153.7M of 1G
 </code></pre>
 
 <h2 id="scale-down">Scale Down</h2>
@@ -439,9 +439,9 @@ people-mysql cleardb   spark   people       create succeeded
 
 
 			<footer class="footer" style="text-align: right; color: #ccc">
-				
+
 				&copy; 2016 Copyright Pivotal Software, Inc.  All Rights Reserved.
-				
+
 			</footer>
 		</div>
 	</article>
@@ -457,14 +457,14 @@ people-mysql cleardb   spark   people       create succeeded
 </main>
 
     <script>
-    
+
       var base_url = '\/public\/cf-oss-training\/cloud-native\/site\/';
       var repo_id  = 'pivotal-enablement\/cf-oss-training';
-    
+
     </script>
 
     <script src="../javascripts/application.js"></script>
-    
+
 
     <script>
       /* Add headers to scrollspy */
@@ -480,14 +480,14 @@ people-mysql cleardb   spark   people       create succeeded
           a.setAttribute("href", "#" + headers[i].id);
           a.setAttribute("title", headers[i].innerHTML);
           a.innerHTML = headers[i].innerHTML;
-          
+
           li.appendChild(a)
           scrollspy.appendChild(li);
         }
       } else {
         scrollspy.parentElement.removeChild(scrollspy)
       }
-      
+
 
       /* Add permanent link next to the headers */
       var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -502,7 +502,7 @@ people-mysql cleardb   spark   people       create succeeded
       }
     </script>
 
-    
+
 
     <script src="https://gohugo.io/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
