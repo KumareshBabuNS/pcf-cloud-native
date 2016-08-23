@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-  
-  
-  
-  
-   <html class="no-js"> 
+
+
+
+
+   <html class="no-js">
 
   <head lang="en-us">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <title>Circuit Breakers with Hystrix - Cloud Native with Microservices</title>
 
-    
+
     <meta name="description" content="CF Foundation Training - Cloud Native with Microservices">
-    
+
     <link rel="canonical" href="../index.html">
-    
+
     <meta name="author" content="sgreenberg@pivotal.io">
-    
+
 
     <meta property="og:url" content="/public/cf-oss-training/cloud-native/site/">
     <meta property="og:title" content="Cloud Native with Microservices">
@@ -49,9 +49,9 @@
     <link rel="stylesheet" href="../stylesheets/palettes.css">
     <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
 
-    
-    
-    
+
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
     <style>
       body, input {
@@ -62,12 +62,12 @@
       }
     </style>
 
-    
+
     <link rel="stylesheet" href="https://content.staging.enablement.pivotal.io/public/cf-oss-training/cloud-native/site/css/style.css">
-    
+
     <script src="../javascripts/modernizr.js"></script>
 
-    
+
 
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -76,8 +76,8 @@
 
 
 
-	
-	
+
+
 
 
 <div class="backdrop">
@@ -96,26 +96,26 @@
         <span></span>
       </label>
     </div>
-    
+
       <div class="button">
         <img src="../img/pcf-logo.png" style="height: 50px; vertical-align: middle"/>
       </div>
-    
+
     <div class="stretch">
       <div class="title" style="text-align: right">
         Circuit Breakers with Hystrix
       </div>
     </div>
 
-    
 
-    
+
+
     <div class="button button-github" role="button" aria-label="GitHub">
       <a href="https://github.com/patrickcrocker/pcf-cloud-native" title="@patrickcrocker/pcf-cloud-native on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
-    
 
-    
+
+
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
@@ -139,11 +139,11 @@
 		<nav aria-label="Navigation">
   <a href="https://github.com/patrickcrocker/pcf-cloud-native" class="project">
     <div class="banner">
-      
+
         <div class="logo">
           <img src="../img/pcf-cloud-icon.png">
         </div>
-      
+
       <div class="name">
         <strong>Cloud Native with Microservices <span class="version">v1.0.0</span></strong>
 
@@ -155,120 +155,120 @@
 
   <div class="scrollable">
     <div class="wrapper">
-      
-      
-      
+
+
+
 
       <div class="toc">
-        
+
         <ul>
-          
+
 
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Overview" href="../index.html">
-	
+
 	Overview
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Prerequisites" href="../prereqs/index.html">
-	
+
 	Prerequisites
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Agenda" href="../agenda/index.html">
-	
+
 	Agenda
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Resources" href="../resources/index.html">
-	
+
 	Resources
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="Notes" href="../notes/index.html">
-	
+
 	Notes
 </a>
 
-  
-  
+
+
 </li>
 
 
 
 <li>
-  
-    
+
+
 
 
 
 <a  title="License" href="http://www.apache.org/licenses/LICENSE-2.0">
-	
+
 	License
 </a>
 
-  
-  
+
+
 </li>
 
         </ul>
-        
+
 
       </div>
     </div>
@@ -281,7 +281,7 @@
 		<div class="wrapper">
 			<h1>Circuit Breakers with Hystrix </h1>
 
-			
+
 
 <p>Currently, our browser app does not fail gracefully when an issue occurs communicating with the people service.  Let&rsquo;s fix that.</p>
 
@@ -304,18 +304,48 @@
 }
 </code></pre>
 
-<h2 id="enabling-hystrix">Enabling Hystrix</h2>
+
+
+<h2 id="creating-hystrix-dashboard">Creating the Circuit Breaker Dashboard</h2>
+
+<p>The Circuit Breaker Dashboard provides Hystrix clients with a nice place to report successes and failures.</p>
+
+<ul>
+<li>Use <code>cf marketplace</code> to view the available services and plans.<br /></li>
+<li>Use <code>cf create-service</code> to create a Circuit Breaker Dashboard service instance <code>p-circuit-breaker-dashboard</code> and select the plan <code>standard</code>.</li>
+</ul>
+
+<h3 id="checking-your-work">Checking Your Work</h3>
+
+<p>You should be able to see your service instance:</p>
+
+<pre><code class="language-sh">cf services
+...
+
+name                        service                       plan        bound apps        last operation
+people-mysql                p-mysql                       100mb-dev   people            update succeeded
+service-registry            p-service-registry            standard    browser, people   create succeeded
+circuit-breaker-dashboard   p-circuit-breaker-dashboard   standard                      create in progress
+</code></pre>
+
+<p>The Circuit Breaker Dashboard can take up to 110 seconds to start. Use <code>cf service circuit-breaker-dashboard</code> to check operation status.</p>
+
+
+<h2 id="binding-the-dashboard-service">Binding to Your App</h2>
 
 <p>Our browser app actually has Hystrix built in, but currently disabled.  You can enable Hystrix by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to <code>hystrix</code>.</p>
 
 <ul>
-<li><code>cf set-env browser SPRING_PROFILES_ACTIVE hystrix</code></li>
-<li><code>cf restart browser</code></li>
+<li><p>Set <code>SPRING_PROFILES_ACTIVE</code> environment variable to <code>hystrix</code>.</p></li>
 </ul>
 
-<blockquote>
-<p><strong>Don&rsquo;t</strong> write your apps this way.  You should always be using Hystrix in your spring code, but we do this for the purposes of teaching.</p>
-</blockquote>
+<pre><code>cf set-env browser SPRING_PROFILES_ACTIVE hystrix
+</code></pre>
+
+<ul>
+<li><p>Use <code>cf bind-service</code> to bind the <code>circuit-breaker-dashboard</code> you created above to your browser app.</p></li>
+<li><p>Use <code>cf restart</code> so the browser service can pick up the changes.</p></li>
+</ul>
 
 <h3 id="checking-your-work">Checking Your Work</h3>
 
@@ -358,9 +388,9 @@ Properties
 
 
 			<footer class="footer" style="text-align: right; color: #ccc">
-				
+
 				&copy; 2016 Copyright Pivotal Software, Inc.  All Rights Reserved.
-				
+
 			</footer>
 		</div>
 	</article>
@@ -376,14 +406,14 @@ Properties
 </main>
 
     <script>
-    
+
       var base_url = '\/public\/cf-oss-training\/cloud-native\/site\/';
       var repo_id  = 'pivotal-enablement\/cf-oss-training';
-    
+
     </script>
 
     <script src="../javascripts/application.js"></script>
-    
+
 
     <script>
       /* Add headers to scrollspy */
@@ -399,14 +429,14 @@ Properties
           a.setAttribute("href", "#" + headers[i].id);
           a.setAttribute("title", headers[i].innerHTML);
           a.innerHTML = headers[i].innerHTML;
-          
+
           li.appendChild(a)
           scrollspy.appendChild(li);
         }
       } else {
         scrollspy.parentElement.removeChild(scrollspy)
       }
-      
+
 
       /* Add permanent link next to the headers */
       var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -421,7 +451,7 @@ Properties
       }
     </script>
 
-    
+
 
     <script src="https://gohugo.io/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
