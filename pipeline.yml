@@ -9,6 +9,10 @@ jobs:
       manifest: pcf-cloud-native/manifest.yml
       path: pcf-cloud-native
       current_app_name: absg-workshop
+  - put: tracker
+    params:
+      repos:
+        - pcf-cloud-native
 
 resources:
 - name: pcf-cloud-native
@@ -21,7 +25,14 @@ resources:
   type: cf
   source:
     api: api.system.anvil.pcfdemo.com
-    username: {{username}}
-    password: {{password}}
+    username: {{cf-username}}
+    password: {{cf-password}}
     organization: ABSG
     space: workshop
+
+- name: tracker
+  type: tracker
+  source:
+    token: {{tracker-api-token}}
+    project_id: {{tracker-project-id}}
+    tracker_url: {{tracker-url}}
